@@ -14,4 +14,5 @@ const dbConnect = async() =>{
   }
 };
 
+mongoose.set('strictQuery',true);
 export default dbConnect;
