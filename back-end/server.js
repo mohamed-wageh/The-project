@@ -8,9 +8,11 @@ const bcrypt = require("bcrypt");
 const User = require("./db/userModel.js");
 const bodyParser = require('body-parser');
 
+
 dotenv.config();
 dbConnect();
 const app = express();
+app.use(bodyParser.json());
 
 app.listen(5004, console.log("server is running port 5004 ....."));
 
@@ -48,7 +50,7 @@ app.post("/register", (request, response) => {
       .catch((e) => {
         response.status(500).send({
           message: "Password was not hashed successfully",
-          e,
+          e, 
         });
       });
   });
