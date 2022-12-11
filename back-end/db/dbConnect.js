@@ -1,5 +1,5 @@
 // external imports
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const dbConnect = async() =>{
   try{
@@ -15,4 +15,4 @@ const dbConnect = async() =>{
 };
 
 mongoose.set('strictQuery',true);
-export default dbConnect;
+module.exports = dbConnect;
