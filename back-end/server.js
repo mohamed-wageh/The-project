@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 const User = require("./db/userModel.js");
 const bodyParser = require('body-parser');
 
-dotenv.config();
+dotenv.config({path: './config/config.env' });
 dbConnect();
 const app = express();
 
@@ -54,7 +54,7 @@ app.post("/register", (request, response) => {
   });
   
 
-app.get("/",(req,res) => {
+app.get('/',(req, res) => {
     res.send("api is running...");
 });
 
