@@ -4,7 +4,7 @@ import SignIn from './components/SignIn' ;
 import SignUp from './components/SignUp';
 import Pricing from './components/Pricing';
 
-import * as ROUTES from './constants/route';
+import * as ROUTES from './Constants/Route';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 // import Pricing from './components/Pricing';
 
