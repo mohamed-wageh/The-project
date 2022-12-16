@@ -6,8 +6,9 @@ const dbConnect = async() =>{
     const connection = await mongoose.connect(process.env.DB_URL,{
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useFindAndModify: false
     });
-    console.log("mongo is connected");
+    console.log(`mongo is connected: ${conn.connection.host}`);
   }catch(error){
     console.log(`error: ${error.message}`)
     process.exit(1) 
