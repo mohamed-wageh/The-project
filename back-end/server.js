@@ -5,19 +5,13 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const bcrypt = require("bcrypt");
 dotenv.config();
-const app = express();
 const PORT =process.env.PORT || 1000;
 const User = require("./db/userModel.js");
 const bodyParser = require('body-parser');
-<<<<<<< HEAD
-app.use(cors());
-app.use(bodyParser.json());
-=======
 
 dotenv.config({path: './config/config.env' });
 dbConnect();
 const app = express();
->>>>>>> 51f046fa7a9ee7477d6795273894dd9a28b5dcc6
 
 app.listen(5004, console.log("server is running port 5004 ....."));
 
@@ -43,18 +37,12 @@ app.post('/login', (req, res) => {
         console.log('user', user);
         return res.status(200).send(user);
       })
-<<<<<<< HEAD
-      .catch(err => {
-        console.log(`err`, err.message);
-        return res.status(401).send({ error: err.message });
-=======
       // catch error if the password hash isn't successful
       .catch((e) => {
         response.status(500).send({
           message: "Password was not hashed successfully",
           e,
         });
->>>>>>> 51f046fa7a9ee7477d6795273894dd9a28b5dcc6
       });
   });
   
@@ -144,12 +132,9 @@ app.post('/login', (req, res) => {
     return res.status(200).send("OK");
   });
 
-<<<<<<< HEAD
-=======
 app.get('/',(req, res) => {
     res.send("api is running...");
 });
->>>>>>> 51f046fa7a9ee7477d6795273894dd9a28b5dcc6
 
 
 app.listen(PORT, console.log(`server run in ${PORT}`));

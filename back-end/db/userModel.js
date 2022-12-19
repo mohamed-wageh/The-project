@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-var mongoose = require('mongoose');
-
-const userSchema = new mongoose.Schema({
-    name: String,
-    password: String,
-    email: String,
-    token: String
-  });
-
-module.exports = mongoose.model('User', userSchema);
-=======
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken')
 const joi = require('joi')
@@ -45,4 +33,3 @@ const validate = (data) =>{
     return mongoose.Schema.validate(data)
 };
 module.exports={user,validate};
->>>>>>> 51f046fa7a9ee7477d6795273894dd9a28b5dcc6
