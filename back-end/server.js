@@ -12,7 +12,7 @@ mongoose.connect(
     process.env.DB_URL).then(() => console.log("db connect")).catch((err) => {
     console.log(err);
 });
-
+app.use(express.json());
 app.use("/api/user", userRouter); //we go to api end user our app
 
 app.listen(PORT, console.log(`server run in ${PORT}`));

@@ -5,9 +5,9 @@ router.get("/usertest", (req, res) => {
 });
 
 
-router.post("userposttest", (req, res) => {
+router.post("/userposttest", (req, res) => {
     const username = req.body.username;
     res.send("your username is:" + username);
 });
 
-module.exports = router
+module.exports = router;
