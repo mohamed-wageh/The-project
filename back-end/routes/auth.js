@@ -1,18 +1,20 @@
 const router = require("express").Router();
-const user = require("../models/user")
-const cryptojs = require("crypto-js")
+const User = require("../models/User");
+const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 //register
 router.post("/register", async(req, res) => {
-    const newuser = new User({
+    const newUser = new User({
         username: req.body.username,
         email: req.body.email,
-        password: cryptojs.AES.encrypt(req.body.password, process.env.pass_sec).toString(),
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        password: CryptoJS.AES.encrypt(req.body.password, process.env.PASS_SEC).toString(),
 
     });
 
     try {
-        const savedUser = await newuser.save();
+        const savedUser = await newUser.save();
         res.status(201).json(savedUser);
     } catch (err) {
         res.status(500).json(err);
@@ -22,27 +24,28 @@ router.post("/register", async(req, res) => {
 
 //LOGIN
 
-router.post("/login", async(req, res) => {
+router.post('/login', async(req, res) => {
     try {
         const user = await User.findOne({ username: req.body.username });
-        !user && res.status(401).json("wrong credentials!")
-        const hashedpassword = cryptojs.AES.decrypt(
+        !user && res.status(401).json("wrong credentials!");
+        const hashedPassword = CryptoJS.AES.decrypt(
             user.password,
             process.env.PASS_SEC
         );
-        const originalpassword = hashedpassword.toString(cryptojs.enc.Utf8);
-
-        originalpassword !== req.body.password &&
+        const originalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
+        const enteredPassword = req.body.password;
+        originalPassword !== enteredPassword &&
             res.status(401).json("wrong credentials!");
 
-        constaccessToken = jwt.sign({
-            id: user._id
-        })
+        const accessToken = jwt.sign({
+            id: user._id,
+            isAdmin: user.isAdmin,
+        },process.env.JWTPRIVATEKEY,{expiresIn:"5d"})
 
         const { password, ...others } = user._doc;
 
 
-        res.status(200).json(others);
+        res.status(200).json({ ...others, accessToken});
     } catch (err) {
         res.status(500).json(err)
     }
