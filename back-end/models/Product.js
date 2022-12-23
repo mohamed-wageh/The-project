@@ -9,7 +9,8 @@ const ProductSchema = new mongoose.Schema(
         image: {type: String , required: true},
         size: {type: String},
         color: {type: String },
-        price: {type: Number , required: true}
+        price: {type: Number , required: true},
+        inStock:{type:Boolean , default:true}
     },
 },
     //to save the date ex:(created at: time , updated at: time)
