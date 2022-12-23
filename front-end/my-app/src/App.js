@@ -2,22 +2,29 @@
 import './App.css';
 import SignIn from './components/SignIn' ;
 import SignUp from './components/SignUp';
-import Pricing from './components/Pricing';
-
+import productList from './components/productList';
+import Product from './components/product';
+import SignSide from './components/signSide';
+import DbHome from './dashboard/dbHome';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import * as ROUTES from './Constants/Route';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-// import Pricing from './components/Pricing';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import Home from './pages/home';
+
+const theme = createTheme();
 
 function App() {
   return (
-    <Router> 
-      <Switch>
-        <Route exact path={ROUTES.LANDING} component={SignIn} />
-        <Route path={ROUTES.SIGN_IN} component={SignIn} />
-        <Route path={ROUTES.SIGN_UP} component={SignUp} />
-        <Route path={ROUTES.PRICING} component={Pricing} />
-      </Switch>
-    </Router> 
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Routes>
+          <Route path={ROUTES.LANDING} element={<SignIn />} />
+          <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
+          <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
+          <Route path={ROUTES.DASHBOARD} element={<DbHome />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 

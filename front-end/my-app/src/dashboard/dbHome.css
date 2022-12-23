@@ -1,0 +1,12 @@
+.container{
+    margin-top: 10px;
+    display: flex;
+}
+.link{
+    color: inherit;
+    text-decoration: none;
+}
+.other{
+    flex: 4;
+    background-color: darkcyan;
+}
