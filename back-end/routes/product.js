@@ -1,16 +1,16 @@
 const { Router } = require("express");
-const product = require("../models/User");
+const Product = require("../models/Product");
 const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin } = require("./tokenVerification");
 
 const router = require("express").Router();
-//CREATE
+//Add new product
 
 router.post("/", verifyTokenAndAdmin, async(req, res) => {
-    const newproduct = new product(req.body)
+    const newProduct = new Product(req.body)
 
     try {
-        const saveproduct = await newproduct.save();
-        res.status(200).json(saveproduct);
+        const savedProduct = await newProduct.save();
+        res.status(200).json(savedProduct);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -18,11 +18,12 @@ router.post("/", verifyTokenAndAdmin, async(req, res) => {
 //UPDATE
 router.put("/:id", verifyTokenAndAdmin, async(req, res) => {
     try {
-        const updatedproduct = await product.findByIdAndUpdate(
+        const updatedProduct = await Product.findByIdAndUpdate(
             req.params.id, {
                 $set: req.body,
-            }, { new: true });
-        res.status(200).json(updatedproduct);
+            }, 
+            { new: true });
+        res.status(200).json(updatedProduct);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -31,8 +32,8 @@ router.put("/:id", verifyTokenAndAdmin, async(req, res) => {
 //delete
 router.delete("/:id", verifyTokenAndAdmin, async(req, res) => {
     try {
-        await product.findByIdAndDelete(req.params.id);
-        res.status(200).json("product has been deleted...");
+        await Product.findByIdAndDelete(req.params.id);
+        res.status(200).json("Successfully deleted");
     } catch (err) {
         res.status(500).json(err);
     }
@@ -41,7 +42,7 @@ router.delete("/:id", verifyTokenAndAdmin, async(req, res) => {
 //get product
 router.get("/find/:id", async(req, res) => {
     try {
-        const product = await product.findById(req.params.id);
+        const product = await Product.findById(req.params.id);
         res.status(200).json(product);
     } catch (err) {
         res.status(500).json(err);
@@ -56,15 +57,15 @@ router.get("/", async(req, res) => {
         let products;
 
         if (qNew) {
-            product = await product.find().sort({ createdAt: -1 }).limit(1);
+            products = await Product.find().sort({ createdAt: -1 }).limit(1);
         } else if (qCategory) {
-            products = await product.find({
+            products = await Product.find({
                 categories: {
                     $in: [qCategory],
                 },
             });
         } else {
-            products = await product.find();
+            products = await Product.find();
         }
 
 

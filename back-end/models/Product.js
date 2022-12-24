@@ -2,7 +2,6 @@ const mongoose = require("mongoose")
 
 const ProductSchema = new mongoose.Schema(
     {
-    info:{
         name:{type: String , required:true, unique:true},
         description:{type: String , required:true},
         categories: {type: Array},
@@ -10,9 +9,8 @@ const ProductSchema = new mongoose.Schema(
         size: {type: String},
         color: {type: String },
         price: {type: Number , required: true},
-        inStock:{type:Boolean , default:true}
+        inStock:{type:Boolean , default:true,},
     },
-},
     //to save the date ex:(created at: time , updated at: time)
     {timestamps: true}
 );
