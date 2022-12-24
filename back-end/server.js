@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 const PORT = process.env.PORT || 5005;
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
-const productRouter = require("./routes/auth");
+const productRouter = require("./routes/product");
 const app = express();
 dotenv.config();
 mongoose.set('strictQuery', true);
@@ -18,5 +18,5 @@ mongoose.connect(
 app.use(express.json());
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter); //we go to api end user our app
-app.use("/api/products", userRouter);
+app.use("/api/products", productRouter);
 app.listen(PORT, console.log(`server run in ${PORT}`));
