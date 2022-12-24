@@ -1,6 +1,6 @@
 import './sideBar.css'
-import { NotificationsActive, Logout, Person, LineStyle, Timeline, TrendingUp, BarChart, PermIdentity, Storefront, AttachMoney } from '@mui/icons-material';
-
+import { NotificationsActive, Logout, Person, LineStyle, Timeline, TrendingUp, AddBusinessOutlined, PermIdentity, Storefront, PersonAddAltOutlined } from '@mui/icons-material';
+import { Link } from "react-router-dom";
 export default function sideBar() {
     return (
         <div className='sidebar'>
@@ -8,36 +8,39 @@ export default function sideBar() {
                 <div className="sidebarMenu">
                     <h3 className="sidebarTitle">Main Menu</h3>
                     <ul className="siderbarlist">
-                        <li className="sidbarlistitem">
-                            <LineStyle className='sidebarIcon' />
-                            Home
-                        </li>
-                        <li className="sidbarlistitem">
-                            <Timeline className='sidebarIcon' />
-                            Analytics
-                        </li>
-                        <li className="sidbarlistitem">
-                            <TrendingUp className='sidebarIcon' />
-                            Sales
-                        </li>
-                        <h3 className="sidebarTitle">Other Menu</h3>
-                        <li className="sidbarlistitem">
-                            <PermIdentity className='sidebarIcon' />
-                            Users
-                        </li>
-                        <li className="sidbarlistitem">
-                            <Storefront className='sidebarIcon' />
-                            Product
-                        </li>
-                        <li className="sidbarlistitem">
-                            <AttachMoney ndingUp className='sidebarIcon' />
-                            Transactions
-                        </li>
-                        <h3 className="sidebarTitle">Service</h3>
-                        <li className="sidbarlistitem">
-                            <BarChart className='sidebarIcon' />
-                            Orders
-                        </li>
+                        <Link to="/dashboard" className="link">
+                            <li className="sidbarlistitem">
+                                <LineStyle className='sidebarIcon' />
+                                Home
+                            </li>
+                        </Link>
+
+                        <h3 className="sidebarTitle">User Menu</h3>
+                        <Link to="/dashboard/users" className="link">
+                            <li className="sidbarlistitem">
+                                <PermIdentity className='sidebarIcon' />
+                                Users
+                            </li>
+                        </Link>
+                        <Link to="/dashboard/user/newUser" className="link">
+                            <li className="sidbarlistitem">
+                                <PersonAddAltOutlined className='sidebarIcon' />
+                                New User
+                            </li>
+                        </Link>
+                        <h3 className="sidebarTitle">Product Menu</h3>
+                        <Link to="/dashboard/productList" className="link">
+                            <li className="sidbarlistitem">
+                                <Storefront className='sidebarIcon' />
+                                Product
+                            </li>
+                        </Link>
+                        <Link to="/dashboard/newproduct" className="link">
+                            <li className="sidbarlistitem">
+                                <AddBusinessOutlined className='sidebarIcon' />
+                                New Product
+                            </li>
+                        </Link>
                         <li className="sidbarlistitem">
                             <NotificationsActive className='sidebarIcon' />
                             Notification
