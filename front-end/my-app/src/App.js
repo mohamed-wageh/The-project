@@ -16,10 +16,9 @@ const theme = createTheme();
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      {/* <Home/> */}
       <Router>
         <Routes>
-          {/* <Route path={ROUTES.LANDING} element={<SignIn />} /> */}
+          <Route path={ROUTES.LANDING} element={<Home />} />
           <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
           <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
           <Route path={ROUTES.DASHBOARD} element={<DbHome />} />
