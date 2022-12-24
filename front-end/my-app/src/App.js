@@ -5,7 +5,7 @@ import SignUp from './components/SignUp';
 import productList from './components/productList';
 import Product from './components/product';
 import SignSide from './components/signSide';
-import DbHome from './dashboard/dbHome';
+import DbHome from './dashboard/dbpages/home/dbHome';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import * as ROUTES from './Constants/Route';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
@@ -15,17 +15,16 @@ const theme = createTheme();
 
 function App() {
   return (
-     <Home/>
-    // <ThemeProvider theme={theme}>
-    //   <Router>
-    //     <Routes>
-    //       <Route path={ROUTES.LANDING} element={<SignIn />} />
-    //       <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
-    //       <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
-    //       <Route path={ROUTES.DASHBOARD} element={<DbHome />} />
-    //     </Routes>
-    //   </Router>
-    // </ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Routes>
+          <Route path={ROUTES.LANDING} element={<Home />} />
+          <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
+          <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
+          <Route path={ROUTES.DASHBOARD} element={<DbHome />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 
