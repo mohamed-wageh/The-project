@@ -1,4 +1,3 @@
-const { Router } = require("express");
 const Product = require("../models/Product");
 const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin } = require("./tokenVerification");
 
