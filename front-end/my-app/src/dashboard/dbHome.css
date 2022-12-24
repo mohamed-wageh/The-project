@@ -1,4 +1,4 @@
-/* .container{
+.box-container{
     margin-top: 10px;
     display: flex;
 }
@@ -9,4 +9,4 @@
 .other{
     flex: 4;
     background-color: darkcyan;
-} */
+}

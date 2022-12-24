@@ -1,15 +1,16 @@
 import * as React from 'react';
 import Dbheader from './dbComponent/Dbheader';
 import SideBar from './dbComponent/sideBar';
+import Home from './dbpages/home';
 import '../dashboard/dbHome.css';
 
 function dbHome() {
     return (
         <div>
             <Dbheader />
-            <div className='container'>
+            <div className='BOx-container'>
                 <SideBar />
-                <div className='other'>other pages</div>
+                <Home />
             </div>
         </div >
     );

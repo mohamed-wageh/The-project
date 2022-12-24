@@ -15,7 +15,7 @@ const theme = createTheme();
 
 function App() {
   return (
-    <Home/>
+     <Home/>
     // <ThemeProvider theme={theme}>
     //   <Router>
     //     <Routes>

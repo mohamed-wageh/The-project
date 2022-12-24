@@ -1,6 +1,8 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@mui/icons-material";
 import { useState } from "react";
 import styled from "styled-components";
+import { sliderItems } from "../data";
+
 
 const Container = styled.div`
   width: 100%;
@@ -88,19 +90,27 @@ const Slider = () => {
 
   return (
     <Container>
-    <Arrow direction="left">
-       <ArrowLeftOutlined/>  
-    </Arrow>
-    <Wrapper>
-       <ImgContainer>
-       <Image scr= "https://images.pexels.com/photos/1526814/pexels-photo-1526814.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"/>
-       </ImgContainer>
-       <InfoContainer></InfoContainer>
-    </Wrapper>
-    <Arrow direction="right">
-       <ArrowRightOutlined/>  
-    </Arrow>
-  </Container>
+      <Arrow direction="left" onClick={() => handleClick("left")}>
+        <ArrowLeftOutlined />
+      </Arrow>
+      <Wrapper slideIndex={slideIndex}>
+        {sliderItems.map((item) => (
+          <Slide bg={item.bg} key={item.id}>
+            <ImgContainer>
+              <Image src={item.img} />
+            </ImgContainer>
+            <InfoContainer>
+              <Title>{item.title}</Title>
+              <Desc>{item.desc}</Desc>
+              <Button>SHOW NOW</Button>
+            </InfoContainer>
+          </Slide>
+        ))}
+      </Wrapper>
+      <Arrow direction="right" onClick={() => handleClick("right")}>
+        <ArrowRightOutlined />
+      </Arrow>
+    </Container>
   );
 };
 
