@@ -3,6 +3,7 @@ const express = require("express");
 // bndef el mongoose
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const cors = require("cors");
 const PORT = process.env.PORT || 5005;
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
@@ -11,6 +12,7 @@ const cartRouter = require("./routes/cart");
 const orderRouter = require("./routes/order");
 const cors = require("cors");
 const app = express();
+app.use(cors())
 dotenv.config();
 mongoose.set('strictQuery', true);
 mongoose.connect(

@@ -6,11 +6,13 @@ const jwt = require("jsonwebtoken");
 router.post("/register", async(req, res) => {
     const newUser = new User({
         username: req.body.username,
-        email: req.body.email,
+        email: UserSchema.path('email').validate(async(email)=>{
+            const emailCount = await mongoose.models.users.countDocuments({ email })
+            return !emailCount
+        }, 'Email already exists'),
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         password: CryptoJS.AES.encrypt(req.body.password, process.env.SEC_KEY).toString(),
-
     });
 
     try {
