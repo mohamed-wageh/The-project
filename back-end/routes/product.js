@@ -84,6 +84,7 @@ router.get("/search/products" , async(req, res) =>{
                     {name: {$regex: key , $options: "$i"}},
                     {brand: {$regex: key , $options: "$i"}},
                     {categories: {$regex: key , $options: "$i"}},
+                    {size: {$regex: key , $options: "$i"}},
                     {color : {$regex: key , $options: "$i"}},
             ]
         } : {}
