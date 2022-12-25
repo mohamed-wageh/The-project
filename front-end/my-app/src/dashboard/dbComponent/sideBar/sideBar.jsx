@@ -46,10 +46,12 @@ export default function sideBar() {
                             Notification
                         </li>
                         <h3 className="sidebarTitle">Account</h3>
-                        <li className="sidbarlistitem">
-                            <Person className='sidebarIcon' />
-                            Profile
-                        </li>
+                        <Link to="/dashboard/user/:userId" className="link">
+                            <li className="sidbarlistitem">
+                                <Person className='sidebarIcon' />
+                                Profile
+                            </li>
+                        </Link>
                         <li className="sidbarlistitem">
                             <Logout className='sidebarIcon' />
                             Log Out
