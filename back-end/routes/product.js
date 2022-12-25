@@ -1,6 +1,5 @@
-const Product = require("../models/Product");
 const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin } = require("./tokenVerification");
-
+const Product  = require("../models/Product");
 const router = require("express").Router();
 //Add new product
 
@@ -56,7 +55,7 @@ router.get("/", async(req, res) => {
         let products;
 
         if (qNew) {
-            products = await Product.find().sort({ createdAt: -1 }).limit(1);
+            products = await Product.find().sort({ createdAt: -1 }).limit(2);
         } else if (qCategory) {
             products = await Product.find({
                 categories: {
@@ -74,5 +73,24 @@ router.get("/", async(req, res) => {
     }
 });
 
+//search by name, categories , brand , size , color
 
+router.get("/search/products" , async(req, res) =>{
+    try{
+        const {key , page , limit} = req.query
+        const skip = (page - 1) * limit
+        const search = key ? {
+            "$or": [
+                    {name: {$regex: key , $options: "$i"}},
+                    {brand: {$regex: key , $options: "$i"}},
+                    {categories: {$regex: key , $options: "$i"}},
+                    {color : {$regex: key , $options: "$i"}},
+            ]
+        } : {}
+        const data = await Product.find(search).skip(skip).limit(limit)
+        res.status(200).json({data})
+    }catch (err) {
+        res.status(500).json(err);
+    }
+});
 module.exports = router;
