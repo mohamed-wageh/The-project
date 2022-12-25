@@ -38,3 +38,9 @@
   align-self: flex-end;
   border-radius: 5px;
 }
+.percentage.positive{
+  color: green;
+}
+.percentage.negative{
+  color: red;
+}
