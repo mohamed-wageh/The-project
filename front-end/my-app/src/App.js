@@ -18,7 +18,7 @@ const theme = createTheme();
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+  
       <Router>
         <Routes>
           <Route path={ROUTES.LANDING} element={<Home />} />
@@ -33,7 +33,6 @@ function App() {
           <Route path={ROUTES.DASHBOARDNEWPRODUCT} element={<NewProduct />} />
         </Routes>
       </Router>
-    </ThemeProvider>
   );
 }
 
