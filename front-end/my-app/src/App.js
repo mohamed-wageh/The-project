@@ -10,8 +10,8 @@ import DbHome from './dashboard/dbpages/home/dbHome';
 import Dbusers from './dashboard/dbpages/userlist/userList';
 import DbUser from './dashboard/dbpages/user/user';
 import NewUser from './dashboard/dbpages/newuser/newuser';
-import ProductList from './dashboard/dbpages/productList/productList';
-import Product from './dashboard/dbpages/product/product';
+import DBProductList from './dashboard/dbpages/productList/productList';
+import DbProduct from './dashboard/dbpages/product/product';
 import NewProduct from './dashboard/dbpages/newproduct/newproduct';
 import Categories from './components/Categories';
 import Products from './components/Products';
@@ -22,8 +22,9 @@ import FeaturedProducts from './components/FeaturedProducts/FeaturedProducts';
 import Card from './components/Card/Card';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import * as ROUTES from './Constants/Route';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route,Redirect} from 'react-router-dom';
 import Home from './pages/home';
+import ProductList from './pages/productlist';
 
 const theme = createTheme();
 
@@ -32,6 +33,13 @@ function App() {
   
       <Router>
         <Routes>
+        <Route exact path="/" element={<Home  />} />
+        <Route path="/products/:category" element={<ProductList  />} />
+        <Route path="/product/:id" element={<Product  />} />
+        {/* <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
+        <Route path="/register">
+          {user ? <Redirect to="/" /> : <Register />}
+        </Route> */}
           <Route path={ROUTES.LANDING} element={<Home  />} />
           <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
           <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
@@ -40,8 +48,8 @@ function App() {
           <Route path={ROUTES.DASHBOARDUSERS} element={<Dbusers />} />
           <Route path={ROUTES.DASHBOARDUSER} element={<DbUser />} />
           <Route path={ROUTES.DASHBOARDNEWUSER} element={<NewUser />} />
-          <Route path={ROUTES.DASHBOARDPRODUCTLIST} element={<ProductList />} />
-          <Route path={ROUTES.DASHBOARDPRODUCT} element={<Product />} />
+          <Route path={ROUTES.DASHBOARDPRODUCTLIST} element={<DBProductList />} />
+          <Route path={ROUTES.DASHBOARDPRODUCT} element={<DbProduct />} />
           <Route path={ROUTES.DASHBOARDNEWPRODUCT} element={<NewProduct />} />
         </Routes>
       </Router>
