@@ -86,6 +86,8 @@ router.get("/search/products" , async(req, res) =>{
                     {categories: {$regex: key , $options: "$i"}},
                     {size: {$regex: key , $options: "$i"}},
                     {color : {$regex: key , $options: "$i"}},
+                    {description : {$regex: key , $options: "$i"}},
+                    
             ]
         } : {}
         const data = await Product.find(search).skip(skip).limit(limit)
