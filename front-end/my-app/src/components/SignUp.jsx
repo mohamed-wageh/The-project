@@ -8,17 +8,23 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import RadioGroup from '@mui/material/RadioGroup';
+import Radio from '@mui/material/Radio';
+import FormLabel from '@mui/material/FormLabel';
+import FormControl from '@mui/material/FormControl'; 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import * as ROUTES from '../Constants/Route';
+import * as ROUTES from '../Constants/Route.js';
+import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined';
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        my Website
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -51,7 +57,7 @@ export default function SignUp() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+            <Person2OutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
@@ -99,11 +105,28 @@ export default function SignUp() {
                   id="password"
                   autoComplete="new-password"
                 />
+                  <FormControl>
+                   <FormLabel id="demo-controlled-radio-buttons-group">
+                    <Typography component="h6" variant="h6">
+                    Gender
+                   </Typography>
+                    </FormLabel>
+                    <RadioGroup
+                     aria-labelledby="demo-controlled-radio-buttons-group"
+                     name="controlled-radio-buttons-group"
+                    // value={value}
+                   // onChange={handleChange}
+                   >
+                   <FormControlLabel value="female" control={<Radio />} label="Female" />
+                   <FormControlLabel value="male" control={<Radio />} label="Male" />
+                    </RadioGroup>
+                  </FormControl>
+
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
+                  label="I agree to your Terms , Privacy Policy and Cookies Policy."
                 />
               </Grid>
             </Grid>
