@@ -64,24 +64,24 @@ const Icon = styled.div`
 `;
 
 
-const Product1 = ({ item }) => {
-    return (
-      <Container>
-        <Circle />
-        <Image src={item.img} />
-        <Info>
-          <Icon>
-            <ShoppingCartOutlinedIcon  />
-          </Icon>
-          <Icon>
-            <SearchOutlinedIcon />
-          </Icon>
-          <Icon>
-            <FavoriteBorderOutlinedIcon />
-          </Icon>
-        </Info>
-      </Container>
-    );
-  };
-  
-  export default Product1;
+const HomeProduct = ({ item }) => {
+  return (
+    <Container>
+      <Circle />
+      <Image src={item.img} />
+      <Info>
+        <Icon>
+          <ShoppingCartOutlinedIcon />
+        </Icon>
+        <Icon>
+          <SearchOutlinedIcon />
+        </Icon>
+        <Icon>
+          <FavoriteBorderOutlinedIcon />
+        </Icon>
+      </Info>
+    </Container>
+  );
+};
+
+export default HomeProduct;

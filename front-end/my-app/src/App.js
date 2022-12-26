@@ -3,8 +3,6 @@ import './App.css';
 import SignIn from './components/SignIn' ;
 import SignUp from './components/SignUp';
 import ForgetPassword from './components/ForgetPassword';
-import productList from './components/productList';
-import Product from './components/product';
 import SignSide from './components/signSide';
 import DbHome from './dashboard/dbpages/home/dbHome';
 import Dbusers from './dashboard/dbpages/userlist/userList';
@@ -14,7 +12,7 @@ import DBProductList from './dashboard/dbpages/productList/productList';
 import DbProduct from './dashboard/dbpages/product/product';
 import NewProduct from './dashboard/dbpages/newproduct/newproduct';
 import Categories from './components/Categories';
-import Products from './components/Products';
+import HomeProduct from './components/ProductCard';
 import Footer from './components/Footer/Footer';
 // import Product1 from './components/Product1';
 import CategoryItem from './components/CategoryItem';
@@ -35,7 +33,7 @@ function App() {
         <Routes>
         <Route exact path="/" element={<Home  />} />
         <Route path="/products/:category" element={<ProductList  />} />
-        <Route path="/product/:id" element={<Product  />} />
+        <Route path="/product/:id" element={<HomeProduct  />} />
         {/* <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
         <Route path="/register">
           {user ? <Redirect to="/" /> : <Register />}

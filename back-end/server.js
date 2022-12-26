@@ -10,7 +10,6 @@ const userRouter = require("./routes/user");
 const productRouter = require("./routes/product");
 const cartRouter = require("./routes/cart");
 const orderRouter = require("./routes/order");
-const cors = require("cors");
 const app = express();
 app.use(cors())
 dotenv.config();
