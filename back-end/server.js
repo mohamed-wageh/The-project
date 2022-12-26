@@ -9,6 +9,7 @@ const userRouter = require("./routes/user");
 const productRouter = require("./routes/product");
 const cartRouter = require("./routes/cart");
 const orderRouter = require("./routes/order");
+const cors = require("cors");
 const app = express();
 dotenv.config();
 mongoose.set('strictQuery', true);
@@ -17,6 +18,7 @@ mongoose.connect(
     console.log(err);
 });
 
+app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter); //we go to api end user our app
