@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,7 +15,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as ROUTES from '../Constants/Route';
 import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined';
 // import { pink } from '@mui/material/colors';
-
+import request from '../services/services'
+import { colors } from '@mui/material';
+import { AuthContext } from '../contexts/auth-context';
+import { useNavigate } from 'react-router-dom';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -32,13 +35,33 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
+  const [auth, setAuth] = useContext(AuthContext);
+  const navigator = useNavigate()
+  // logged guard
+  useEffect(() => {
+    if (auth.user) {
+      navigator(ROUTES.LANDING)
+    }
+  }, [])
+
+  // form handler 
+  const [loginForm, setLoginForm] = useState({ username: '', password: '', remember: false });
+  const [formError, setFormError] = useState('');
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+    setFormError('');
+
+    request.post('/auth/login', loginForm).then(res => {
+      const { accessToken, ...user } = res.data;
+      setAuth({ accessToken, user });
+      navigator(ROUTES.LANDING)
+    }).catch(err => {
+      if (err?.response?.data) {
+        setFormError(err?.response?.data)
+      }
+    })
   };
 
   return (
@@ -51,7 +74,7 @@ export default function SignIn() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-          
+
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -60,16 +83,22 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+
+          <Typography variant="h5">
+            {formError}
+          </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="User Name"
+              name="username"
+              autoComplete="username"
               autoFocus
+              value={loginForm.username}
+              onChange={(event) => { setLoginForm({ ...loginForm, username: event.target.value }) }}
             />
             <TextField
               margin="normal"
@@ -80,9 +109,13 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={loginForm.password}
+              onChange={(event) => { setLoginForm({ ...loginForm, password: event.target.value }) }}
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              control={<Checkbox value="remember" color="primary"
+                checked={loginForm.remember}
+                onChange={(event) => { setLoginForm({ ...loginForm, remember: event.target.checked }) }} />}
               label="Remember me"
             />
             <Button
@@ -95,7 +128,7 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href={ROUTES.PASSWORD_FORGET}  variant="body2">
+                <Link href={ROUTES.PASSWORD_FORGET} variant="body2">
                   Lost password?
                 </Link>
               </Grid>

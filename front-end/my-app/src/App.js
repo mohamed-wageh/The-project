@@ -1,6 +1,6 @@
 
 import './App.css';
-import SignIn from './components/SignIn' ;
+import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import ForgetPassword from './components/ForgetPassword';
 import SignSide from './components/signSide';
@@ -20,38 +20,52 @@ import FeaturedProducts from './components/FeaturedProducts/FeaturedProducts';
 import Card from './components/Card/Card';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import * as ROUTES from './Constants/Route';
-import {BrowserRouter as Router, Routes, Route,Redirect} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Redirect, useLocation, useNavigate } from 'react-router-dom';
 import Home from './pages/home';
 import ProductList from './pages/productlist';
 import Products from "./pages/Products/Products";
+import SingleProduct from "./pages/singleProduct/singleProduct";
+import { useContext, useEffect } from 'react';
+import { AuthContext } from './contexts/auth-context';
+import request from './services/services';
 
 const theme = createTheme();
 
 function App() {
+  const [auth, setAuth, reset] = useContext(AuthContext);
+
+  request.setErrorHandler((err) => {
+    if (err.code === 401) {
+      reset()
+    }
+  })
+  // const navigate = useNavigate()
+
   return (
-  
-      <Router>
-        <Routes>
-        <Route exact path="/" element={<Products  />} />
-        <Route path="/products/:category" element={<ProductList  />} />
-        <Route path="/product/:id" element={<HomeProduct  />} />
+
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/products/:category" element={<ProductList />} />
+        <Route path="/product/:id" element={<HomeProduct />} />
         {/* <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
         <Route path="/register">
           {user ? <Redirect to="/" /> : <Register />}
         </Route> */}
-          <Route path={ROUTES.LANDING} element={<Home  />} />
-          <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
-          <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
-          <Route path={ROUTES.PASSWORD_FORGET} element={<ForgetPassword />} />
-          <Route path={ROUTES.DASHBOARD} element={<DbHome />} />
-          <Route path={ROUTES.DASHBOARDUSERS} element={<Dbusers />} />
-          <Route path={ROUTES.DASHBOARDUSER} element={<DbUser />} />
-          <Route path={ROUTES.DASHBOARDNEWUSER} element={<NewUser />} />
-          <Route path={ROUTES.DASHBOARDPRODUCTLIST} element={<DBProductList />} />
-          <Route path={ROUTES.DASHBOARDPRODUCT} element={<DbProduct />} />
-          <Route path={ROUTES.DASHBOARDNEWPRODUCT} element={<NewProduct />} />
-        </Routes>
-      </Router>
+        <Route path={ROUTES.LANDING} element={<Home />} />
+        <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
+        <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
+        <Route path={ROUTES.ALLPRODUCTS} element={<Products />} />
+        <Route path={ROUTES.PASSWORD_FORGET} element={<ForgetPassword />} />
+        <Route path={ROUTES.DASHBOARD} element={<DbHome />} />
+        <Route path={ROUTES.DASHBOARDUSERS} element={<Dbusers />} />
+        <Route path={ROUTES.DASHBOARDUSER} element={<DbUser />} />
+        <Route path={ROUTES.DASHBOARDNEWUSER} element={<NewUser />} />
+        <Route path={ROUTES.DASHBOARDPRODUCTLIST} element={<DBProductList />} />
+        <Route path={ROUTES.DASHBOARDPRODUCT} element={<DbProduct />} />
+        <Route path={ROUTES.DASHBOARDNEWPRODUCT} element={<NewProduct />} />
+      </Routes>
+    </Router>
   );
 }
 
