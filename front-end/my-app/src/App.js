@@ -23,6 +23,7 @@ import * as ROUTES from './Constants/Route';
 import {BrowserRouter as Router, Routes, Route,Redirect} from 'react-router-dom';
 import Home from './pages/home';
 import ProductList from './pages/productlist';
+import Products from "./pages/Products/Products";
 
 const theme = createTheme();
 
@@ -31,7 +32,7 @@ function App() {
   
       <Router>
         <Routes>
-        <Route exact path="/" element={<Home  />} />
+        <Route exact path="/" element={<Products  />} />
         <Route path="/products/:category" element={<ProductList  />} />
         <Route path="/product/:id" element={<HomeProduct  />} />
         {/* <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
