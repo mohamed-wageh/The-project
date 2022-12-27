@@ -1,53 +1,76 @@
 const router = require("express").Router();
 const User = require("../models/User");
-const CryptoJS = require("crypto-js");
+const bcrypt = require('bcryptjs');
+const { check, validationResult } = require('express-validator');
 const jwt = require("jsonwebtoken");
 //register
-router.post("/register", async (req, res) => {
-    const newUser = new User({
-        username: req.body.username,
-        email: UserSchema.path('email').validate(async (email) => {
-            const emailCount = await mongoose.models.users.countDocuments({ email })
-            return !emailCount
-        }, 'Email already exists'),
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        password: CryptoJS.AES.encrypt(req.body.password, process.env.SEC_KEY).toString(),
-    });
+router.post(
+    "/register",
+    [
+        check("user_Name", "user_Name is requierd").not().isEmpty(),
+        check("email", " please include a vaild email ").isEmail(),
+        check("password", "Password must be greater than 8 and contain at least one uppercase letter, one lowercase letter, and one number").isStrongPassword({
+        }),
+        check('phone').isLength({ atmost: 11 }).isMobilePhone()
+    ],
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+const { username, email, password, phone , firstName , lastName , isAdmin} = req.body;
+        try {
+            //check if user exists
+            let user = await User.findOne({ email });
+            if (user) {
+                return res.status(400).json({ errors: [{ msg: 'user already exists' }] });
+            }
+            user = new User({
+                username,
+                email,
+                password,
+                phone,
+                firstName,
+                lastName,
+                isAdmin
+            });
 
-    try {
-        const savedUser = await newUser.save();
-        res.status(201).json(savedUser);
-    } catch (err) {
-        res.status(500).json(err);
+            //encrypt password 
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(password, salt);
+            await user.save();
+
+            //return jsonwebtoken
+            const accessToken = jwt.sign({
+                id: user._id,
+                isAdmin: user.isAdmin,
+            },
+            process.env.JWTPRIVATEKEY,{expiresIn:"30d"});
+                    res.status(200).json({accessToken});
+
+        } catch (error) {
+            console.error(error.message)
+            res.status(500).send('server error')
+        }
     }
-
-});
+);
 
 //LOGIN
 
-router.post('/login', async (req, res) => {
+router.post('/login', async(req, res) => {
     try {
-        const user = await User.findOne({ username: req.body.username });
-        if (!user) return res.status(401).json("wrong credentials!");
-        const hashedPassword = CryptoJS.AES.decrypt(
-            user.password,
-            process.env.SEC_KEY
-        );
-        const originalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
-        if (originalPassword !== req.body.password)
-            return res.status(401).json("wrong credentials!");
+        const { username , password } = req.body;
+        const user = await User.findOne({ username: username });
+        if (!user) return res.status(400).json({ msg: "User does not exist. " });
 
-        const accessToken = jwt.sign({
-            id: user._id,
-            isAdmin: user.isAdmin,
-        },
-            process.env.JWTPRIVATEKEY, { expiresIn: "5d" });
-        const { password, ...others } = user._doc;
-        return res.status(200).json({ ...others, accessToken });
-
-    } catch (err) {
-        res.status(500).json(err)
-    }
-});
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) return res.status(400).json({ msg: "Invalid credentials. " });
+    
+        const token = jwt.sign({ id: user._id }, process.env.JWTPRIVATEKEY);
+        delete user.password;
+        return res.status(200).json({ token, user });
+      } catch (err) {
+        res.status(500).json({ error: err.message });
+      }
+    });
 module.exports = router;

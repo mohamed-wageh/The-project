@@ -1,17 +1,14 @@
 const User = require("../models/User");
 const {verifyToken,verifyTokenAndAuthorization,verifyTokenAndAdmin} = require("./tokenVerification");
-
+const bcrypt = require('bcryptjs');
 const router = require("express").Router();
 
 //UPDATE
 router.put("/:id", verifyTokenAndAuthorization , async (req, res)=> {
   if (req.body.password) {
-      req.body.password = CryptoJS.AES.encrypt(
-      req.body.password,
-      process.env.SEC_KEY
-    ).toString();
+    const salt = await bcrypt.genSalt(10);
+    req.body.password = await bcrypt.hash(password, salt);
   }
-
   try {
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id, 

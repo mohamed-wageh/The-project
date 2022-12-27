@@ -11,17 +11,13 @@ const productRouter = require("./routes/product");
 const cartRouter = require("./routes/cart");
 const orderRouter = require("./routes/order");
 const app = express();
-app.use(cors())
 dotenv.config();
 mongoose.set('strictQuery', true);
 mongoose.connect(
     process.env.DB_URL).then(() => console.log("db connect")).catch((err) => {
-        console.log(err);
-    });
-
-app.use(cors({
-    origin: '*'
-}));
+    console.log(err);
+});
+app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter); //we go to api end user our app

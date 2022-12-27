@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import ProductList from "../../components/ProductList";
+import ProductList from "../../components/productList";
 // import List from "../../components/List/List";
 import "./Products.scss";
 

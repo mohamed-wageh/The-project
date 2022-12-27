@@ -6,6 +6,7 @@ const UserSchema = new mongoose.Schema(
         username:{type: String , required:true, unique:true},
         firstName:{type: String ,required:true},
         lastName:{type: String ,required:true},
+        phone:{type:Number , required:true , unique: true},
         isAdmin: {
             type:Boolean, default:false,
         },
@@ -13,8 +14,4 @@ const UserSchema = new mongoose.Schema(
     //to save the date ex:(created at: time , updated at: time)
     {timestamps: true}
 );
-UserSchema.path('email').validate(async(email)=>{
-    const emailCount = await mongoose.models.users.countDocuments({ email })
-    return !emailCount
-}, 'Email already exists');
 module.exports = mongoose.model("user" , UserSchema);

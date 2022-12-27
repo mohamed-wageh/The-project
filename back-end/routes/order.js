@@ -29,7 +29,7 @@ router.put("/:id", verifyTokenAndAdmin, async(req, res) => {
 });
 
 //delete
-router.delete("/:id", verifyTokenAndAdmin, async(req, res) => {
+router.delete("/:id", verifyTokenAndAdmin , async(req, res) => {
     try {
         await Order.findByIdAndDelete(req.params.id);
         res.status(200).json("Order has been cancelled");
