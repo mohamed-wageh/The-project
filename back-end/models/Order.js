@@ -14,7 +14,7 @@ const OrderSchema = new mongoose.Schema(
                 }
             }
         ],
-        userAddress:{type:Object ,required: true},
+        userAddress:{type:String ,required: true},
         totalAmount: {type:Number ,required: true},
         orderStatus:{type:String , default:"Pending"}
     },

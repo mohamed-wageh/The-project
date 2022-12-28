@@ -24,11 +24,12 @@ import { BrowserRouter as Router, Routes, Route, Redirect, useLocation, useNavig
 import Home from './pages/home';
 import ProductList from './pages/productlist';
 import Products from "./pages/Products/Products";
-import SingleProduct from "./pages/singleProduct/singleProduct";
+// import SingleProduct from "./pages/singleProduct/singleProduct";
 import { useContext, useEffect } from 'react';
 import { AuthContext } from './contexts/auth-context';
 import request from './services/services';
-
+import SingleProduct from "./pages/SingleProduct/SingleProduct";
+import Cart from './pages/Cart/Cart';
 const theme = createTheme();
 
 function App() {

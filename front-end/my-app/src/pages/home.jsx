@@ -1,4 +1,4 @@
-//import React from 'react';
+import React from 'react';
 //import Announcement from '../Design/Announcement';
 import Slider from "../components/slider";
 import Navbar from '../components/navbar';
