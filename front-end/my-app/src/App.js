@@ -28,7 +28,7 @@ import Products from "./pages/Products/Products";
 import { useContext, useEffect } from 'react';
 import { AuthContext } from './contexts/auth-context';
 import request from './services/services';
-import SingleProduct from "./pages/SingleProduct/SingleProduct";
+// import SingleProduct from "./pages/SingleProduct/SingleProduct";
 import Cart from './pages/Cart/Cart';
 const theme = createTheme();
 

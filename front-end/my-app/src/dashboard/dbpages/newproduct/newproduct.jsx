@@ -19,15 +19,28 @@ function newproduct() {
                             <input type="text" placeholder="Apple Airpods" />
                         </div>
                         <div className="addProductItem">
-                            <label>Stock</label>
+                            <label>Description</label>
+                            <input type="text" placeholder="Red shoes" />
+                        </div>
+                        <div className="addProductItem">
+                            <label>Categories</label>
+                            <input type="text" placeholder="Man,Woman" />
+                        </div>
+                        <div className="addProductItem">
+                            <label>Size</label>
+                            <input type="text" placeholder="L,XL" />
+                        </div>
+                        <div className="addProductItem">
+                            <label>Color</label>
+                            <input type="text" placeholder="Red" />
+                        </div>
+                        <div className="addProductItem">
+                            <label>Price</label>
                             <input type="text" placeholder="123" />
                         </div>
                         <div className="addProductItem">
-                            <label>Active</label>
-                            <select name="active" id="active">
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
-                            </select>
+                            <label>Stock</label>
+                            <input type="text" placeholder="123" />
                         </div>
                         <button className="addProductButton">Create</button>
                     </form>
