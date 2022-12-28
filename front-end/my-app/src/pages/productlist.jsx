@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Slider from "../components/slider";
-import Navbar from '../components/Navbar';
+import Navbar from '../components/navbar';
 import Products from "../components/productList";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer/Footer";

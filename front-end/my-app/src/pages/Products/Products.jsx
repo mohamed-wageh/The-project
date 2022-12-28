@@ -9,58 +9,58 @@ const Products = () => {
   const catId = parseInt(useParams().id);
   const [maxPrice, setMaxPrice] = useState(1000);
   const [sort, setSort] = useState(null);
-//   const [selectedSubCats, setSelectedSubCats] = useState([]);
+  //   const [selectedSubCats, setSelectedSubCats] = useState([]);
 
-//   const { data, loading, error } = useFetch(
-//     `/sub-categories?[filters][categories][id][$eq]=${catId}`
-//   );
+  //   const { data, loading, error } = useFetch(
+  //     `/sub-categories?[filters][categories][id][$eq]=${catId}`
+  //   );
 
-//   const handleChange = (e) => {
-//     const value = e.target.value;
-//     const isChecked = e.target.checked;
+  //   const handleChange = (e) => {
+  //     const value = e.target.value;
+  //     const isChecked = e.target.checked;
 
-//     setSelectedSubCats(
-//       isChecked
-//         ? [...selectedSubCats, value]
-//         : selectedSubCats.filter((item) => item !== value)
-//     );
-//   };
+  //     setSelectedSubCats(
+  //       isChecked
+  //         ? [...selectedSubCats, value]
+  //         : selectedSubCats.filter((item) => item !== value)
+  //     );
+  //   };
 
   return (
     <div className="products">
       <div className="left">
         <div className="filterItem">
           <h2>Product Categories</h2>
-          
-            <div className="inputItem" key={1}>
-              <input
-                type="checkbox"
-                id={1}
-                value={1}
-               
-              />
-              <label htmlFor="1">Shoes</label>
-            </div>
-            <div className="inputItem" key={2}>
-              <input
-                type="checkbox"
-                id={2}
-                value={2}
-               
-              />
-              <label htmlFor="2">Skirts</label>
-            </div>
-            <div className="inputItem" key={3}>
-              <input
-                type="checkbox"
-                id={3}
-                value={3}
-               
-              />
-              <label htmlFor="3">Coats</label>
-            </div>
+
+          <div className="inputItem" key={1}>
+            <input
+              type="checkbox"
+              id={1}
+              value={1}
+
+            />
+            <label htmlFor="1">Shoes</label>
+          </div>
+          <div className="inputItem" key={2}>
+            <input
+              type="checkbox"
+              id={2}
+              value={2}
+
+            />
+            <label htmlFor="2">Skirts</label>
+          </div>
+          <div className="inputItem" key={3}>
+            <input
+              type="checkbox"
+              id={3}
+              value={3}
+
+            />
+            <label htmlFor="3">Coats</label>
+          </div>
         </div>
-        
+
         <div className="filterItem">
           <h2>Filter by price</h2>
           <div className="inputItem">
@@ -104,7 +104,7 @@ const Products = () => {
           src="https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600"
           alt=""
         />
-        <productList catId={catId} maxPrice={maxPrice} sort={sort} />
+        <ProductList />
       </div>
     </div>
   );

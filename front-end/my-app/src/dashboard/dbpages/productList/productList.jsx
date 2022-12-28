@@ -3,35 +3,41 @@ import SideBar from '../../dbComponent/sideBar/sideBar';
 import Dbheader from '../../dbComponent/Header/Dbheader';
 import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@mui/icons-material";
-import { productRows } from "../../dummyData";
+// import { productRows } from "../../dummyData";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import getProducts from '../../../services/services';
 export default function ProductList() {
-    const [data, setData] = useState(productRows);
+    useEffect(() => {
+        getProducts().then(p => setData(p.data)).catch(err => console.log('err', err))
+
+    }, [])
+
+    const [data, setData] = useState([]);
 
     const handleDelete = (id) => {
         setData(data.filter((item) => item.id !== id));
     };
-
+    console.log('data', data);
     const columns = [
-        { field: "id", headerName: "ID", width: 90 },
+        { field: "_id", headerName: "ID", width: 90 },
         {
-            field: "product",
+            field: "name",
             headerName: "product",
             width: 200,
             renderCell: (params) => {
                 return (
                     <div className="productListUser">
-                        <img className="productListImg" src={params.row.img} alt="" />
+                        <img className="productListImg" src={params.row.image} alt="" />
                         {params.row.name}
                     </div>
                 );
             },
         },
-        { field: "stock", headerName: "Stock", width: 200 },
+        { field: "inStock", headerName: "Stock", width: 200 },
         {
-            field: "status",
-            headerName: "Status",
+            field: "brand",
+            headerName: "brand",
             width: 120,
         },
         {
@@ -65,13 +71,13 @@ export default function ProductList() {
             <div className='Box-container'>
                 <SideBar />
                 <div className="productList">
-                    <DataGrid
+                    {data.length && <DataGrid getRowId={(row) => row._id}
                         rows={data}
                         disableSelectionOnClick
                         columns={columns}
                         pageSize={8}
                         checkboxSelection
-                    />
+                    />}
                 </div>
             </div>
         </div>

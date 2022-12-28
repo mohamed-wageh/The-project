@@ -82,7 +82,7 @@ export default function table() {
                             <TableCell className="tableCell">{row.id}</TableCell>
                             <TableCell className="tableCell">
                                 <div className="cellWrapper">
-                                    <img src={row.img} alt="" className="image" />
+                                    <img src={row.img} alt="" className="photo" />
                                     {row.product}
                                 </div>
                             </TableCell>

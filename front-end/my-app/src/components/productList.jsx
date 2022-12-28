@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { popularProducts } from "../data";
 import ProductCard from "./ProductCard";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 const Container = styled.div`
     padding: 20px;
@@ -9,6 +10,26 @@ const Container = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
 `;
+const Main = styled.div`
+    color: inherit,
+    textDecoration: none
+`;
+const Title = styled.h1`
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    text-align:center;
+    color: black;
+    text-decoration: none;
+`;
+const linkStyle = {
+  textDecoration: "none",
+  color: 'blue'
+};
 
 
 const ProductList = (cat, filters, sort) => {
@@ -57,11 +78,18 @@ const ProductList = (cat, filters, sort) => {
   }, [sort]);
 
   return (
-    <Container>
-      {filteredProducts.map((item) => (
-        <ProductCard item={item} key={item.id} />
-      ))}
-    </Container>
+    <div>
+      <Main>
+        <Link to="/allproducts" style={linkStyle}>
+          <Title>All Products</Title>
+        </Link>
+      </Main>
+      <Container>
+        {filteredProducts.map((item) => (
+          <ProductCard item={item} key={item.id} />
+        ))}
+      </Container>
+    </div >
   );
 };
 
