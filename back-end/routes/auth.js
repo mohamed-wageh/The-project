@@ -2,8 +2,12 @@ const router = require("express").Router();
 const User = require("../models/User");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
+const cloudinary = require('cloudinary');
 //register
 router.post("/register", async (req, res) => {
+    const result = await cloudinary.v2.uploader.upload(req.body.user, {
+        folder: 'users'
+    })
     const newUser = new User({
         username: req.body.username,
         email: UserSchema.path('email').validate(async (email) => {
