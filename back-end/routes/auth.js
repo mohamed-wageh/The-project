@@ -20,7 +20,7 @@ router.post(
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-        const {email, password, phone, firstName, lastName, isAdmin } = req.body;
+        const {email, password, phone, firstName, lastName, avatar ,isAdmin } = req.body;
         try {
             //check if user exists
             let user = await User.findOne({ email });
@@ -33,6 +33,7 @@ router.post(
                 phone,
                 firstName,
                 lastName,
+                avatar,
                 isAdmin
             });
 
