@@ -23,3 +23,4 @@ export const CARD = '/card';
 export const ALLPRODUCTS = '/allproducts';
 // export const PRODUCTS = '/products';
 // export const PRODUCT1 = '/Product1';
+export const CHECKOUT = '/checkout';

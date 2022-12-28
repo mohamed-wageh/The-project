@@ -1,24 +1,32 @@
 import "./userList.css"
+import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@mui/icons-material";
 import { userRows } from "../../dummyData";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import SideBar from '../../dbComponent/sideBar/sideBar';
 import Dbheader from '../../dbComponent/Header/Dbheader';
+import axios from "axios";
 
 export default function UserList() {
-    const [data, setData] = useState(userRows);
+    const [user, setUser] = useState([]);
+    useState(() => {
+        const fetchUsers = async () => {
+            const { data } = await axios.get('/users')
+            setUser(data)
+        }
+        fetchUsers()
+    }, [])
 
     const handleDelete = (id) => {
-        setData(data.filter((item) => item.id !== id));
+        setUser(user.filter((item) => item.id !== id));
     };
 
     const columns = [
-        { field: "id", headerName: "ID", width: 90 },
+        { field: "_id", headerName: "ID", width: 90 },
         {
-            field: "user",
-            headerName: "User",
+            field: "firstName",
+            headerName: "firstName",
             width: 200,
             renderCell: (params) => {
                 return (
@@ -31,13 +39,13 @@ export default function UserList() {
         },
         { field: "email", headerName: "Email", width: 200 },
         {
-            field: "status",
-            headerName: "Status",
+            field: "lastName",
+            headerName: "lastName",
             width: 120,
         },
         {
-            field: "transaction",
-            headerName: "Transaction Volume",
+            field: "phone",
+            headerName: "phone",
             width: 160,
         },
         {
@@ -52,7 +60,7 @@ export default function UserList() {
                         </Link>
                         <DeleteOutline
                             className="userListDelete"
-                            onClick={() => handleDelete(params.row.id)}
+                            onClick={() => handleDelete(params.row._id)}
                         />
                     </>
                 );
@@ -66,7 +74,8 @@ export default function UserList() {
                 <SideBar />
                 <div className="userList">
                     <DataGrid
-                        rows={data}
+                        getRowId={(row) => row._id}
+                        rows={user}
                         disableSelectionOnClick
                         columns={columns}
                         pageSize={8}

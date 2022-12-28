@@ -20,7 +20,12 @@ router.post(
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-        const {email, password, phone, firstName, lastName, avatar ,isAdmin } = req.body;
+        const result = await cloudinary.v2.uploader.upload(req.body.image, {
+            folder: 'users',
+            width: 150,
+            crop: "scale"
+        })
+        const { email, password, phone, firstName, lastName, avatar ,isAdmin } = req.body;
         try {
             //check if user exists
             let user = await User.findOne({ email });
@@ -32,6 +37,10 @@ router.post(
                 password,
                 phone,
                 firstName,
+                // image: {
+                //     public_id: result.public_id,
+                //     url: result.secure_url
+                // },
                 lastName,
                 avatar,
                 isAdmin

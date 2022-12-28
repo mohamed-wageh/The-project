@@ -18,6 +18,7 @@ const Home = () => {
             <ProductList />
             <Newsletter />
             <Footer />
+            
         </div>
     );
 };
