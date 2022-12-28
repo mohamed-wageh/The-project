@@ -19,6 +19,11 @@ router.post(
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
+        const result = await cloudinary.v2.uploader.upload(req.body.image, {
+            folder: 'users',
+            width: 150,
+            crop: "scale"
+        })
         const { username, email, password, phone, firstName, lastName, isAdmin } = req.body;
         try {
             //check if user exists
@@ -32,6 +37,10 @@ router.post(
                 password,
                 phone,
                 firstName,
+                // image: {
+                //     public_id: result.public_id,
+                //     url: result.secure_url
+                // },
                 lastName,
                 isAdmin
             });

@@ -43,12 +43,12 @@ function App() {
   // const navigate = useNavigate()
 
   return (
-  
-      <Router>
-        <Routes>
-        <Route exact path="/" element={<Cart  />} />
-        <Route path="/products/:category" element={<ProductList  />} />
-        <Route path="/product/:id" element={<HomeProduct  />} />
+
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/products/:category" element={<ProductList />} />
+        <Route path="/product/:id" element={<HomeProduct />} />
         {/* <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
         <Route path="/register">
           {user ? <Redirect to="/" /> : <Register />}
