@@ -24,11 +24,12 @@ import { BrowserRouter as Router, Routes, Route, Redirect, useLocation, useNavig
 import Home from './pages/home';
 import ProductList from './pages/productlist';
 import Products from "./pages/Products/Products";
-import SingleProduct from "./pages/singleProduct/singleProduct";
+// import SingleProduct from "./pages/singleProduct/singleProduct";
 import { useContext, useEffect } from 'react';
 import { AuthContext } from './contexts/auth-context';
 import request from './services/services';
-
+import SingleProduct from "./pages/SingleProduct/SingleProduct";
+import Cart from './pages/Cart/Cart';
 const theme = createTheme();
 
 function App() {
@@ -42,12 +43,12 @@ function App() {
   // const navigate = useNavigate()
 
   return (
-
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/products/:category" element={<ProductList />} />
-        <Route path="/product/:id" element={<HomeProduct />} />
+  
+      <Router>
+        <Routes>
+        <Route exact path="/" element={<Cart  />} />
+        <Route path="/products/:category" element={<ProductList  />} />
+        <Route path="/product/:id" element={<HomeProduct  />} />
         {/* <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
         <Route path="/register">
           {user ? <Redirect to="/" /> : <Register />}

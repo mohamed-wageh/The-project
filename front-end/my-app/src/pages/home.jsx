@@ -1,10 +1,10 @@
-//import React from 'react';
+import React from 'react';
 //import Announcement from '../Design/Announcement';
 import Slider from "../components/slider";
 import Navbar from '../components/navbar';
 import Categories from "../components/Categories";
 import FeaturedProducts from "../components/FeaturedProducts/FeaturedProducts";
-import ProductList from "../components/ProductList";
+import ProductList from "../components/productList";
 import Footer from "../components/Footer/Footer";
 import Newsletter from '../components/Newsletter';
 
