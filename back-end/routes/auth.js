@@ -8,7 +8,8 @@ const cloudinary = require('cloudinary');
 router.post(
     "/register",
     [
-        check("user_Name", "user_Name is requierd").not().isEmpty(),
+        check("firstName", "firstName is requierd").not().isEmpty(),
+        check("lastName", "lastName is requierd").not().isEmpty(),
         check("email", " please include a vaild email ").isEmail(),
         check("password", "Password must be greater than 8 and contain at least one uppercase letter, one lowercase letter, and one number").isStrongPassword({
         }),
@@ -24,7 +25,7 @@ router.post(
             width: 150,
             crop: "scale"
         })
-        const { username, email, password, phone, firstName, lastName, isAdmin } = req.body;
+        const { email, password, phone, firstName, lastName, isAdmin } = req.body;
         try {
             //check if user exists
             let user = await User.findOne({ email });
@@ -32,7 +33,6 @@ router.post(
                 return res.status(400).json({ errors: [{ msg: 'user already exists' }] });
             }
             user = new User({
-                username,
                 email,
                 password,
                 phone,
@@ -69,8 +69,8 @@ router.post(
 
 router.post('/login', async (req, res) => {
     try {
-        const { username, password } = req.body;
-        const user = await User.findOne({ username: username });
+        const { email, password } = req.body;
+        const user = await User.findOne({ email: email });
         if (!user) return res.status(400).json({ msg: "User does not exist. " });
 
         const isMatch = await bcrypt.compare(password, user.password);
