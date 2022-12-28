@@ -9,7 +9,14 @@ const UserSchema = new mongoose.Schema(
         isAdmin: {
             type: Boolean, default: false,
         },
-        avatar: { type: String },
+        avatar: {
+            public_id:{
+                type:String , required:true
+            },
+            url:{
+                type:String , required:true
+            }
+        },
     },
     //to save the date ex:(created at: time , updated at: time)
     { timestamps: true }

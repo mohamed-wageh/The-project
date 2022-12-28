@@ -1,12 +1,29 @@
 const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin } = require("./tokenVerification");
 const Product  = require("../models/Product");
 const router = require("express").Router();
+const cloudinary = require ("../utils/cloudinary");
 //Add new product
-router.post("/", verifyTokenAndAdmin, async(req, res) => {
-    const newProduct = new Product(req.body)
+router.post("/", verifyTokenAndAdmin, async(req, res , next) => {
+    const {name, categories, description, image, size , color , price , stock , rating} = req.body;
 
     try {
-        const savedProduct = await newProduct.save();
+        const result = await cloudinary.v2.uploader.upload(image , {
+            folder: Products,
+        })
+        const savedProduct = await Product.save({
+            name,
+             categories,
+              description,
+               image:{
+                public_id : result.public_id,
+                url: result.secure_url
+               },
+                size ,
+                 color ,
+                  price ,
+                   stock,
+                   rating
+        });
         res.status(200).json(savedProduct);
     } catch (err) {
         res.status(500).json(err);
