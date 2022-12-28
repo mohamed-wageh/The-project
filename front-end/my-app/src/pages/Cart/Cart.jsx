@@ -5,7 +5,7 @@ import { useState } from "react";
 import "./Cart.scss";
 import slider from "../../components/slider";
 import Footer from "../../components/Footer/Footer";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/navbar";
 import { mobile } from "../../responsive";
 
 const Container = styled.div``;
@@ -31,6 +31,10 @@ const TopButton = styled.button`
   padding: 10px;
   font-weight: 600;
   cursor: pointer;
+  transition: all 0.5s ease;
+&:hover {
+  background-color: black;
+  transform: scale(1.1);
   border: ${(props) => props.type === "filled" && "none"};
   background-color: ${(props) =>
     props.type === "filled" ? "black" : "transparent"};
@@ -119,6 +123,10 @@ const button = styled.button`
     justify-content: center;
     cursor: pointer;
     border: none;
+    transition: all 0.5s ease;
+&:hover {
+  background-color: black;
+  transform: scale(1.1);
 `;
 const ProductAmount = styled.div`
   font-size: 24px;
@@ -168,24 +176,31 @@ const Button = styled.button`
   background-color: black;
   color: white;
   font-weight: 600;
+  transition: all 0.5s ease;
+&:hover {
+  background-color: black;
+  transform: scale(1.1);
 `;
 
 const Cart = () => {
+  const mystyle = {
+    margin: 30
+ };
 
-    const [selectedImg, setSelectedImg] = useState(0);
-    const [quantity, setQuantity] = useState(1);
+    // const [selectedImg, setSelectedImg] = useState(0);
+    // const [quantity, setQuantity] = useState(1);
 
   return (
     <Container>
       <Navbar />
       <slider />
       <Wrapper>
-        <Title>YOUR BAG</Title>
+        <Title>YOUR CART</Title>
         <Top>
           <TopButton>CONTINUE SHOPPING</TopButton>
           <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
-            <TopText>Your Wishlist (0)</TopText>
+            {/* <TopText>Shopping Bag(2)</TopText>
+            <TopText>Your Wishlist (0)</TopText> */}
           </TopTexts>
           <TopButton type="filled">CHECKOUT NOW</TopButton>
         </Top>
@@ -205,6 +220,9 @@ const Cart = () => {
                   <ProductSize>
                     <b>Size:</b> 37.5
                   </ProductSize>
+                  <ProductSize>
+                    <b>Quantity:</b> 3
+                  </ProductSize>
                 </Details>
               </ProductDetail>
               <PriceDetail>
@@ -212,13 +230,15 @@ const Cart = () => {
                   {/* <AddIcon />
                   <ProductAmount>2</ProductAmount>
                   <RemoveIcon /> */}
-                  <div className="quantity">
+                  {/* <div className="quantity">
             <button onClick={() => setQuantity((prev) => (prev === 1 ? 1 : prev - 1))}> - </button>
               {quantity}
               <button onClick={() => setQuantity((prev) => prev + 1)}> + </button>
-            </div>
+            </div> */}
                 {/* </ProductAmountContainer> */}
                 <ProductPrice>$ 30</ProductPrice>
+                {/* <Button>Remove</Button> */}
+                <TopButton type="filled" style={mystyle}>Remove</TopButton>
               </PriceDetail>
             </Product>
             <Hr />
@@ -236,17 +256,22 @@ const Cart = () => {
                   <ProductSize>
                     <b>Size:</b> M
                   </ProductSize>
+                  <ProductSize>
+                    <b>Quantity:</b> 3
+                  </ProductSize>
                 </Details>
               </ProductDetail>
               <PriceDetail>
                 {/* <ProductAmountContainer> */}
-                <div className="quantity">
+                {/* <div className="quantity">
             <button onClick={() => setQuantity((prev) => (prev === 1 ? 1 : prev - 1))}> - </button>
               {quantity}
               <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
-            </div>
+            </div> */}
                 {/* </ProductAmountContainer> */}
                 <ProductPrice>$ 20</ProductPrice>
+                {/* <Button>Remove</Button> */}
+                <TopButton type="filled" style={mystyle}>Remove</TopButton>
               </PriceDetail>
             </Product>
           </Info>
