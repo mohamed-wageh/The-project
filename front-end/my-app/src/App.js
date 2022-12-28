@@ -24,7 +24,8 @@ import {BrowserRouter as Router, Routes, Route,Redirect} from 'react-router-dom'
 import Home from './pages/home';
 import ProductList from './pages/productlist';
 import Products from "./pages/Products/Products";
-
+import SingleProduct from "./pages/SingleProduct/SingleProduct";
+import Cart from './pages/Cart/Cart';
 const theme = createTheme();
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
   
       <Router>
         <Routes>
-        <Route exact path="/" element={<Products  />} />
+        <Route exact path="/" element={<Cart />} />
         <Route path="/products/:category" element={<ProductList  />} />
         <Route path="/product/:id" element={<HomeProduct  />} />
         {/* <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>

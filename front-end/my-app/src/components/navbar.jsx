@@ -57,7 +57,7 @@ cursor: pointer;
 margin-left: 25px;
 `;
 
-const navbar = () => {
+const Navbar = () => {
     return (
         <Contaniers>  
             <Wrapper>
@@ -86,4 +86,4 @@ const navbar = () => {
     );
 
 };
-export default navbar;
+export default Navbar;
