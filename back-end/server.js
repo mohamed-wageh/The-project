@@ -14,11 +14,11 @@ const orderRouter = require("./routes/order");
 const bodyParser = require("body-parser");
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
-cloudinary.config({
-    cloud_name: 'dpddogoro',
-    api_key: '195523127174162',
-    api_secret: 'QMzrQMfg-mGKk96B3HZIKyoQTHs'
-});
+//cloudinary.config({
+  //  cloud_name: 'dpddogoro',
+    //api_key: '195523127174162',
+    //api_secret: 'QMzrQMfg-mGKk96B3HZIKyoQTHs'
+//});
 
 
 dotenv.config();
