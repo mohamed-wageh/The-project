@@ -8,8 +8,13 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import getProducts from '../../../services/services';
 import axios from "axios";
+import { useDispatch } from "react-redux";
 export default function ProductList() {
     const [products, setProducts] = useState([]);
+    const dispatch = useDispatch()
+    useEffect(() => {
+        getProducts(dispatch);
+    }, [dispatch]);
     useState(() => {
         const fetchUsers = async () => {
             const { data } = await axios.get('/products')
