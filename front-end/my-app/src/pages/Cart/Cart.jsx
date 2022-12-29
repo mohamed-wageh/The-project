@@ -7,6 +7,8 @@ import slider from "../../components/slider";
 import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar";
 import { mobile } from "../../responsive";
+import { Link } from 'react-router-dom';
+import * as ROUTES from '../../Constants/Route';
 
 const Container = styled.div``;
 
@@ -185,10 +187,10 @@ const Button = styled.button`
 const Cart = () => {
   const mystyle = {
     margin: 30
- };
+  };
 
-    // const [selectedImg, setSelectedImg] = useState(0);
-    // const [quantity, setQuantity] = useState(1);
+  // const [selectedImg, setSelectedImg] = useState(0);
+  // const [quantity, setQuantity] = useState(1);
 
   return (
     <Container>
@@ -202,7 +204,9 @@ const Cart = () => {
             {/* <TopText>Shopping Bag(2)</TopText>
             <TopText>Your Wishlist (0)</TopText> */}
           </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
+          <Link to={ROUTES.CHECKOUT} >
+            <TopButton type="filled">CHECKOUT NOW</TopButton>
+          </Link>
         </Top>
         <Bottom>
           <Info>
@@ -227,10 +231,10 @@ const Cart = () => {
               </ProductDetail>
               <PriceDetail>
                 {/* <ProductAmountContainer> */}
-                  {/* <AddIcon />
+                {/* <AddIcon />
                   <ProductAmount>2</ProductAmount>
                   <RemoveIcon /> */}
-                  {/* <div className="quantity">
+                {/* <div className="quantity">
             <button onClick={() => setQuantity((prev) => (prev === 1 ? 1 : prev - 1))}> - </button>
               {quantity}
               <button onClick={() => setQuantity((prev) => prev + 1)}> + </button>

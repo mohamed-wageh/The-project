@@ -102,7 +102,7 @@ const Navbar = () => {
         </Center>
         <Right>
           <MenuItem><Link to={ROUTES.ALLPRODUCTS} variant="body2" style={linkStyle}> PRODUCTS</Link></MenuItem>
-          <MenuItem><Link to={ROUTES.PROFILEPAGE} variant="body2" style={linkStyle}> Your Profile</Link></MenuItem>
+          <MenuItem><Link to={ROUTES.PROFILEPAGE} variant="body2" style={linkStyle}> YOUR PROFILE</Link></MenuItem>
 
           {
             !auth.user?.isAdmin ? (<><Link to="/signup" style={linkStyle}>

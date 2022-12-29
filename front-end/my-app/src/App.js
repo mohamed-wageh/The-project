@@ -49,7 +49,7 @@ function App() {
 
     <Router>
       <Routes>
-        <Route exact path="/" element={<Cart />} />
+        <Route exact path="/" element={<Home />} />
         <Route path="/products/:category" element={<ProductList />} />
         <Route path="/product/:id" element={<HomeProduct />} />
         {/* <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
@@ -70,7 +70,7 @@ function App() {
         <Route path={ROUTES.DASHBOARDPRODUCT} element={<DbProduct />} />
         <Route path={ROUTES.DASHBOARDNEWPRODUCT} element={<NewProduct />} />
         <Route path={ROUTES.CART} element={<Cart />} />
-       
+
         <Route path={ROUTES.CHECKOUT} element={<Checkout />} />
         <Route path={ROUTES.PROFILEPAGE} element={<ProfilePage />} />
       </Routes>
