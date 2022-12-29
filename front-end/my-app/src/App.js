@@ -28,8 +28,9 @@ import Products from "./pages/Products/Products";
 import { useContext, useEffect } from 'react';
 import { AuthContext } from './contexts/auth-context';
 import request from './services/services';
-import SingleProduct from "./pages/SingleProduct/SingleProduct";
-import Cart from './pages/Cart/Cart';
+import Checkout from './pages/Checkout/Checkout';
+import ProfilePage from "./pages/ProfilePage ";
+
 const theme = createTheme();
 
 function App() {
@@ -43,12 +44,12 @@ function App() {
   // const navigate = useNavigate()
 
   return (
-  
-      <Router>
-        <Routes>
-        <Route exact path="/" element={<Cart  />} />
-        <Route path="/products/:category" element={<ProductList  />} />
-        <Route path="/product/:id" element={<HomeProduct  />} />
+
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<ProfilePage />} />
+        <Route path="/products/:category" element={<ProductList />} />
+        <Route path="/product/:id" element={<HomeProduct />} />
         {/* <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
         <Route path="/register">
           {user ? <Redirect to="/" /> : <Register />}
@@ -68,6 +69,8 @@ function App() {
         <Route path={ROUTES.DASHBOARDNEWPRODUCT} element={<NewProduct />} />
         <Route path={ROUTES.CART} element={<Cart />} />
        
+        <Route path={ROUTES.CHECKOUT} element={<Checkout />} />
+        <Route path={ROUTES.PROFILEPAGE} element={<ProfilePage />} />
       </Routes>
     </Router>
   );

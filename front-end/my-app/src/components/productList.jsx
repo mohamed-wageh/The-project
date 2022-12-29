@@ -32,7 +32,7 @@ const linkStyle = {
 };
 
 
-const ProductList = (cat, filters, sort) => {
+const ProductList = (categories, filters, sort) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
@@ -40,18 +40,18 @@ const ProductList = (cat, filters, sort) => {
     const getProducts = async () => {
       try {
         const res = await axios.get(
-          cat
-            ? `http://localhost:5005/api/products?categories=${cat}`
+          categories
+            ? `http://localhost:5005/api/products?categories=${categories}`
             : "http://localhost:5005/api/products"
         );
         setProducts(res.data);
       } catch (err) { }
     };
     getProducts();
-  }, [cat]);
+  }, [categories]);
 
   useEffect(() => {
-    cat &&
+    categories &&
       setFilteredProducts(
         products.filter((item) =>
           Object.entries(filters).every(([key, value]) =>
@@ -59,7 +59,7 @@ const ProductList = (cat, filters, sort) => {
           )
         )
       );
-  }, [products, cat, filters]);
+  }, [products, categories, filters]);
 
   useEffect(() => {
     if (sort === "newest") {
@@ -85,9 +85,11 @@ const ProductList = (cat, filters, sort) => {
         </Link>
       </Main>
       <Container>
-        {filteredProducts.map((item) => (
-          <ProductCard item={item} key={item.id} />
-        ))}
+        {categories
+          ? filteredProducts.map((item) => (<ProductCard item={item} key={item.id} />))
+          : products.map((item) => (
+            <ProductCard item={item} key={item.id} />
+          ))}
       </Container>
     </div >
   );

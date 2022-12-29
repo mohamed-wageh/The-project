@@ -23,3 +23,6 @@ export const FEATUREDPRODUCTS = '/featuredproducts';
 export const CARD = '/card';
 export const ALLPRODUCTS = '/allproducts';
 
+
+export const CHECKOUT = '/checkout';
+export const PROFILEPAGE = '/profilepage';

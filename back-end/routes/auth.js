@@ -3,11 +3,13 @@ const User = require("../models/User");
 const bcrypt = require('bcryptjs');
 const { check, validationResult } = require('express-validator');
 const jwt = require("jsonwebtoken");
+const cloudinary = require('../utils/cloudinary');
 //register
 router.post(
     "/register",
     [
-        check("user_Name", "user_Name is requierd").not().isEmpty(),
+        check("firstName", "firstName is requierd").not().isEmpty(),
+        check("lastName", "lastName is requierd").not().isEmpty(),
         check("email", " please include a vaild email ").isEmail(),
         check("password", "Password must be greater than 8 and contain at least one uppercase letter, one lowercase letter, and one number").isStrongPassword({
         }),
@@ -18,7 +20,12 @@ router.post(
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-const { username, email, password, phone , firstName , lastName , isAdmin} = req.body;
+        const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+            folder: 'users',
+            width: 150,
+            crop: "scale"
+        })
+        const { email, password, phone, firstName, lastName, avatar ,isAdmin } = req.body;
         try {
             //check if user exists
             let user = await User.findOne({ email });
@@ -26,12 +33,16 @@ const { username, email, password, phone , firstName , lastName , isAdmin} = req
                 return res.status(400).json({ errors: [{ msg: 'user already exists' }] });
             }
             user = new User({
-                username,
                 email,
                 password,
                 phone,
                 firstName,
+                 avatar: {
+                     public_id: result.public_id,
+                     url: result.secure_url
+                },
                 lastName,
+                avatar,
                 isAdmin
             });
 
@@ -45,8 +56,8 @@ const { username, email, password, phone , firstName , lastName , isAdmin} = req
                 id: user._id,
                 isAdmin: user.isAdmin,
             },
-            process.env.JWTPRIVATEKEY,{expiresIn:"30d"});
-                    res.status(200).json({accessToken});
+                process.env.JWTPRIVATEKEY, { expiresIn: "30d" });
+            res.status(200).json({ accessToken });
 
         } catch (error) {
             console.error(error.message)
@@ -57,20 +68,20 @@ const { username, email, password, phone , firstName , lastName , isAdmin} = req
 
 //LOGIN
 
-router.post('/login', async(req, res) => {
+router.post('/login', async (req, res) => {
     try {
-        const { username , password } = req.body;
-        const user = await User.findOne({ username: username });
+        const { email, password } = req.body;
+        const user = await User.findOne({ email: email });
         if (!user) return res.status(400).json({ msg: "User does not exist. " });
 
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({ msg: "Invalid credentials. " });
-    
+
         const token = jwt.sign({ id: user._id }, process.env.JWTPRIVATEKEY);
         delete user.password;
         return res.status(200).json({ token, user });
-      } catch (err) {
+    } catch (err) {
         res.status(500).json({ error: err.message });
-      }
-    });
+    }
+});
 module.exports = router;

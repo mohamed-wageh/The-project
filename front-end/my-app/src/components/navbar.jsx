@@ -7,8 +7,10 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/auth-context";
 
 const Contaniers = Styled.div` 
-height: 60px;
+height: 50px;
+background-color: white;
 `;
+
 const Wrapper = Styled.div`
 padding: 10px 20px;
 display: flex;
@@ -44,7 +46,9 @@ text-align: center;
 
 const Logo = Styled.h1`
 font-weight: bold;
-`
+color: #006466;
+cursor: pointer;
+`;
 
 const Right = Styled.div`
 flex: 1;
@@ -58,6 +62,20 @@ font-size: 14px;
 cursor: pointer;
 margin-left: 25px;
 `;
+// const myStyle ={
+// fontSize: "12px",
+// width: "20px",
+// height: "20px",
+// borderRadius: "50%",
+// backgroundCcolor: "#5eb2d3",
+// color: "white",
+// position: "absolute",
+// right: "-12px",
+// top: "-12px",
+// display: "flex",
+// alignItems: "center",
+// justifyContent: "center"
+// };
 const linkStyle = {
   textDecoration: "none",
   color: 'black'
@@ -76,24 +94,30 @@ const Navbar = () => {
             <Input placeholder="Search" />
             <Search style={{ color: "gray", fontSize: 16 }} />
           </SearchContainer>
+          
         </Left>
         <Center>
           <Logo>FASHION GRAB</Logo>
         </Center>
         <Right>
+        <MenuItem>PRODUCTS</MenuItem>
           {
             !auth.user?.isAdmin ? (<><Link to="/signup" style={linkStyle}>
-              <MenuItem>REGISTER</MenuItem>
+              <MenuItem>SIGN UP</MenuItem>
             </Link>
               <Link to="/signin" style={linkStyle}>
                 <MenuItem>SIGN IN</MenuItem>
               </Link></>) : ''
           }
-
+           
           <MenuItem>
-            <Badge badgeContent={4} color="primary">
+          <div className="ShoppingCart" >
+            <Badge badgeContent={4} color="primary" >
+
               <ShoppingCartOutlined />
+              {/* <span>0</span>  */}
             </Badge>
+            </div>
           </MenuItem>
         </Right>
       </Wrapper>
