@@ -78,7 +78,7 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>EL WEKALA</Logo>
+          <Logo>FASHION GRAB</Logo>
         </Center>
         <Right>
           {

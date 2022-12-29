@@ -1,5 +1,8 @@
 // import React from "react";
 import { useState } from "react";
+import slider from "../../components/slider";
+import Footer from "../../components/Footer/Footer";
+import Navbar from "../../components/Navbar";
 import "./SingleProduct.scss";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -39,9 +42,15 @@ const SingleProduct = () => {
         "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
 
     ];
-
+    const mystyle1 = {
+      margin: 0
+   };
+   
     return (
+      
+     
         <div className="SingleProduct">
+          
             <div className="Left">
                 <div className="images">
                     <img
@@ -79,7 +88,7 @@ const SingleProduct = () => {
                     <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
                 </div>
                 <button
-                    className="add"
+                    className="add" style={mystyle1}
                 //   onClick={() =>
                 //     dispatch(
                 //       addToCart({
@@ -187,7 +196,9 @@ const SingleProduct = () => {
                     <span>FAQ</span>
                 </div> */}
             </div>
+           
         </div>
+        
     );
 };
 

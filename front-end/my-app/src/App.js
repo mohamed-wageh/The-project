@@ -53,9 +53,10 @@ function App() {
         <Route path="/register">
           {user ? <Redirect to="/" /> : <Register />}
         </Route> */}
-        <Route path={ROUTES.LANDING} element={<Home />} />
+        <Route path={ROUTES.LANDING} element={<Cart />} />
         <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
         <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
+        <Route path={ROUTES.HOME} element={<Home />} />
         <Route path={ROUTES.ALLPRODUCTS} element={<Products />} />
         <Route path={ROUTES.PASSWORD_FORGET} element={<ForgetPassword />} />
         <Route path={ROUTES.DASHBOARD} element={<DbHome />} />
@@ -65,6 +66,8 @@ function App() {
         <Route path={ROUTES.DASHBOARDPRODUCTLIST} element={<DBProductList />} />
         <Route path={ROUTES.DASHBOARDPRODUCT} element={<DbProduct />} />
         <Route path={ROUTES.DASHBOARDNEWPRODUCT} element={<NewProduct />} />
+        <Route path={ROUTES.CART} element={<Cart />} />
+       
       </Routes>
     </Router>
   );

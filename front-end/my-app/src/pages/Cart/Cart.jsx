@@ -5,7 +5,7 @@ import { useState } from "react";
 import "./Cart.scss";
 import slider from "../../components/slider";
 import Footer from "../../components/Footer/Footer";
-import Navbar from "../../components/navbar";
+import Navbar from "../../components/Navbar";
 import { mobile } from "../../responsive";
 
 const Container = styled.div``;
