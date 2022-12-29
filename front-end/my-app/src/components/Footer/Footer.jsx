@@ -120,7 +120,7 @@ const Footer = () => {
           <ListItem><Link href={ROUTES.SIGN_UP} variant="body2"> Man Fashion </Link></ListItem>
           <ListItem><Link href={ROUTES.SIGN_UP} variant="body2"> Woman Fashion </Link></ListItem>
           <ListItem><Link href={ROUTES.SIGN_UP} variant="body2"> Kids Fashion </Link></ListItem>
-          <ListItem><Link href={ROUTES.SIGN_UP} variant="body2"> My Account </Link></ListItem>
+          <ListItem><Link href={ROUTES.PROFILEPAGE} variant="body2"> My Account </Link></ListItem>
           {/* <ListItem><Link href={ROUTES.SIGN_UP} variant="body2"> Order Tracking </Link></ListItem> */}
           {/* <ListItem>Wishlist</ListItem>
           <ListItem>Wishlist</ListItem> */}

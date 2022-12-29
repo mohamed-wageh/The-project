@@ -30,6 +30,8 @@ import { AuthContext } from './contexts/auth-context';
 import request from './services/services';
 import Checkout from './pages/Checkout/Checkout';
 import ProfilePage from "./pages/ProfilePage ";
+import Cart from "./pages/Cart";
+
 
 const theme = createTheme();
 
@@ -47,7 +49,7 @@ function App() {
 
     <Router>
       <Routes>
-        <Route exact path="/" element={<ProfilePage />} />
+        <Route exact path="/" element={<Cart />} />
         <Route path="/products/:category" element={<ProductList />} />
         <Route path="/product/:id" element={<HomeProduct />} />
         {/* <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
