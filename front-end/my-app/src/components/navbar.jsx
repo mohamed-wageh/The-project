@@ -95,14 +95,15 @@ const Navbar = () => {
             <Input placeholder="Search" />
             <Search style={{ color: "gray", fontSize: 16 }} />
           </SearchContainer>
-          
+
         </Left>
         <Center>
           <Logo><Link to={ROUTES.HOME} variant="body2" style={linkStyle}> FASHION GRAB</Link></Logo>
         </Center>
         <Right>
-        <MenuItem><Link to={ROUTES.ALLPRODUCTS} variant="body2" style={linkStyle}> PRODUCTS</Link></MenuItem>
-    
+          <MenuItem><Link to={ROUTES.ALLPRODUCTS} variant="body2" style={linkStyle}> PRODUCTS</Link></MenuItem>
+          <MenuItem><Link to={ROUTES.PROFILEPAGE} variant="body2" style={linkStyle}> YOUR PROFILE</Link></MenuItem>
+
           {
             !auth.user?.isAdmin ? (<><Link to="/signup" style={linkStyle}>
               <MenuItem>SIGN UP</MenuItem>
@@ -111,21 +112,21 @@ const Navbar = () => {
                 <MenuItem>SIGN IN</MenuItem>
               </Link></>) : ''
           }
-           
+
           <MenuItem>
-          
-          <div className="ShoppingCart"  >
-          <Link to={ROUTES.CART} variant="body2"style={linkStyle}>
-      
-            <Badge badgeContent={4} color="primary" >
-            <ShoppingCartOutlined/>
-            {/* <MenuItem>CART</MenuItem>  */}
-             
-              {/* <span>0</span>  */}
-            </Badge>
-            </Link>
+
+            <div className="ShoppingCart"  >
+              <Link to={ROUTES.CART} variant="body2" style={linkStyle}>
+
+                <Badge badgeContent={4} color="primary" >
+                  <ShoppingCartOutlined />
+                  {/* <MenuItem>CART</MenuItem>  */}
+
+                  {/* <span>0</span>  */}
+                </Badge>
+              </Link>
             </div>
-            
+
           </MenuItem>
         </Right>
       </Wrapper>
