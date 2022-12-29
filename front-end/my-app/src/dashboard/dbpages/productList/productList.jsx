@@ -7,37 +7,43 @@ import { DeleteOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import getProducts from '../../../services/services';
+import axios from "axios";
 export default function ProductList() {
-    useEffect(() => {
-        getProducts().then(p => setData(p.data)).catch(err => console.log('err', err))
-
+    const [products, setProducts] = useState([]);
+    useState(() => {
+        const fetchUsers = async () => {
+            const { data } = await axios.get('/products')
+            setProducts(data)
+        }
+        fetchUsers()
     }, [])
 
-    const [data, setData] = useState([]);
-
     const handleDelete = (id) => {
-        setData(data.filter((item) => item.id !== id));
+        setProducts(products.filter((item) => item.id !== id));
     };
-    console.log('data', data);
     const columns = [
         { field: "_id", headerName: "ID", width: 90 },
+        { field: "name", headerName: "name", width: 90 },
+        { field: "description", headerName: "description", width: 90 },
+        { field: "categories", headerName: "categories", width: 90 },
+        { field: "size", headerName: "size", width: 90 },
         {
-            field: "name",
-            headerName: "product",
+            field: "image",
+            headerName: "photo",
             width: 200,
             renderCell: (params) => {
                 return (
-                    <div className="productListUser">
-                        <img className="productListImg" src={params.row.image} alt="" />
-                        {params.row.name}
+                    <div className="userListUser">
+                        <img className="userListImg" src={params.row.image} alt="" />
+                        {params.row.username}
                     </div>
                 );
             },
         },
         { field: "inStock", headerName: "Stock", width: 200 },
         {
-            field: "brand",
-            headerName: "brand",
+            field: "color",
+            headerName: "color",
             width: 120,
         },
         {
@@ -71,8 +77,8 @@ export default function ProductList() {
             <div className='Box-container'>
                 <SideBar />
                 <div className="productList">
-                    {data.length && <DataGrid getRowId={(row) => row._id}
-                        rows={data}
+                    {products.length && <DataGrid getRowId={(row) => row._id}
+                        rows={products}
                         disableSelectionOnClick
                         columns={columns}
                         pageSize={8}

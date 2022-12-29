@@ -24,9 +24,16 @@ export default function UserList() {
 
     const columns = [
         { field: "_id", headerName: "ID", width: 90 },
+        { field: "email", headerName: "Email", width: 200 },
+        { field: "firstName", headerName: "firstName", width: 90 },
         {
-            field: "firstName",
-            headerName: "firstName",
+            field: "lastName",
+            headerName: "lastName",
+            width: 120,
+        },
+        {
+            field: "image",
+            headerName: "photo",
             width: 200,
             renderCell: (params) => {
                 return (
@@ -36,12 +43,6 @@ export default function UserList() {
                     </div>
                 );
             },
-        },
-        { field: "email", headerName: "Email", width: 200 },
-        {
-            field: "lastName",
-            headerName: "lastName",
-            width: 120,
         },
         {
             field: "phone",
