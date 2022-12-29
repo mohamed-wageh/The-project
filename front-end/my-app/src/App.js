@@ -30,7 +30,7 @@ import { AuthContext } from './contexts/auth-context';
 import request from './services/services';
 import Checkout from './pages/Checkout/Checkout';
 import ProfilePage from "./pages/ProfilePage ";
-import Cart from "./pages/Cart";
+import Cart from "./pages/Cart/Cart";
 
 
 const theme = createTheme();
