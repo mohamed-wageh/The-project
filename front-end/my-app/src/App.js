@@ -29,6 +29,7 @@ import { useContext, useEffect } from 'react';
 import { AuthContext } from './contexts/auth-context';
 import request from './services/services';
 import Checkout from './pages/Checkout/Checkout';
+import ProfilePage from "./pages/ProfilePage ";
 
 const theme = createTheme();
 
@@ -46,7 +47,7 @@ function App() {
 
     <Router>
       <Routes>
-        <Route exact path="/" element={<Checkout />} />
+        <Route exact path="/" element={<ProfilePage />} />
         <Route path="/products/:category" element={<ProductList />} />
         <Route path="/product/:id" element={<HomeProduct />} />
         {/* <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
@@ -66,6 +67,7 @@ function App() {
         <Route path={ROUTES.DASHBOARDPRODUCT} element={<DbProduct />} />
         <Route path={ROUTES.DASHBOARDNEWPRODUCT} element={<NewProduct />} />
         <Route path={ROUTES.CHECKOUT} element={<Checkout />} />
+        <Route path={ROUTES.PROFILEPAGE} element={<ProfilePage />} />
       </Routes>
     </Router>
   );

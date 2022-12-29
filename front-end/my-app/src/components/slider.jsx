@@ -52,8 +52,10 @@ const ImgContainer = styled.div`
 `;
 
 const Image = styled.img`
-  height: 80%;
+  height: 95%;
+  width: 75%;
 `;
+
 
 const InfoContainer = styled.div`
   flex: 1;

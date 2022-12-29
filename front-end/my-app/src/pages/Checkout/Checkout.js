@@ -21,7 +21,7 @@ function Copyright() {
     <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="">
-        My Website
+      FASHION GRAB
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -71,7 +71,7 @@ export default function Checkout() {
       >
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            Company name
+          FASHION GRAB
           </Typography>
         </Toolbar>
       </AppBar>

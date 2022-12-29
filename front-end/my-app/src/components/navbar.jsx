@@ -46,7 +46,7 @@ text-align: center;
 
 const Logo = Styled.h1`
 font-weight: bold;
-color: crimson;
+color: #006466;
 cursor: pointer;
 `;
 
@@ -94,9 +94,10 @@ const Navbar = () => {
             <Input placeholder="Search" />
             <Search style={{ color: "gray", fontSize: 16 }} />
           </SearchContainer>
+          
         </Left>
         <Center>
-          <Logo>GANG STORE</Logo>
+          <Logo>FASHION GRAB</Logo>
         </Center>
         <Right>
         <MenuItem>PRODUCTS</MenuItem>
