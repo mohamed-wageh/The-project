@@ -18,6 +18,9 @@ import FormControl from '@mui/material/FormControl';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as ROUTES from '../Constants/Route.js';
 import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined';
+import slider from "../components/slider";
+import Footer from "../components/Footer/Footer";
+import Navbar from "./Navbar";
 
 function Copyright(props) {
   return (
@@ -33,7 +36,9 @@ function Copyright(props) {
 }
 
 const theme = createTheme();
-
+const mystyle = {
+  padding:15
+};
 export default function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -45,6 +50,9 @@ export default function SignUp() {
   };
 
   return (
+    <Container style={mystyle}>
+    <Navbar />
+    <slider />
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -150,5 +158,8 @@ export default function SignUp() {
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
+    <hr/>
+    <Footer />
+    </Container>
   );
 }

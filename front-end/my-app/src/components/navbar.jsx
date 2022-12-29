@@ -5,6 +5,7 @@ import React, { useContext } from "react";
 import Styled from "styled-components";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/auth-context";
+import * as ROUTES from '../Constants/Route';
 
 const Contaniers = Styled.div` 
 height: 50px;
@@ -46,7 +47,7 @@ text-align: center;
 
 const Logo = Styled.h1`
 font-weight: bold;
-color: crimson;
+color: #006466;
 cursor: pointer;
 `;
 
@@ -94,12 +95,14 @@ const Navbar = () => {
             <Input placeholder="Search" />
             <Search style={{ color: "gray", fontSize: 16 }} />
           </SearchContainer>
+          
         </Left>
         <Center>
-          <Logo>GANG STORE</Logo>
+          <Logo><Link to={ROUTES.HOME} variant="body2" style={linkStyle}> FASHION GRAB</Link></Logo>
         </Center>
         <Right>
-        <MenuItem>PRODUCTS</MenuItem>
+        <MenuItem><Link to={ROUTES.ALLPRODUCTS} variant="body2" style={linkStyle}> PRODUCTS</Link></MenuItem>
+    
           {
             !auth.user?.isAdmin ? (<><Link to="/signup" style={linkStyle}>
               <MenuItem>SIGN UP</MenuItem>
@@ -110,13 +113,19 @@ const Navbar = () => {
           }
            
           <MenuItem>
-          <div className="ShoppingCart" >
+          
+          <div className="ShoppingCart"  >
+          <Link to={ROUTES.CART} variant="body2"style={linkStyle}>
+      
             <Badge badgeContent={4} color="primary" >
-
-              <ShoppingCartOutlined />
+            <ShoppingCartOutlined/>
+            {/* <MenuItem>CART</MenuItem>  */}
+             
               {/* <span>0</span>  */}
             </Badge>
+            </Link>
             </div>
+            
           </MenuItem>
         </Right>
       </Wrapper>

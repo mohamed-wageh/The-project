@@ -20,6 +20,9 @@ import { colors } from '@mui/material';
 import { AuthContext } from '../contexts/auth-context';
 import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
+import slider from "../components/slider";
+import Footer from "../components/Footer/Footer";
+import Navbar from "./Navbar";
 
 
 function Copyright(props) {
@@ -46,7 +49,9 @@ export default function SignIn() {
       navigator(ROUTES.LANDING)
     }
   }, [])
-
+  const mystyle = {
+    padding:15
+ };
   // form handler 
   const [loginForm, setLoginForm] = useState({ username: '', password: '', remember: false });
   const [formError, setFormError] = useState('');
@@ -68,6 +73,9 @@ export default function SignIn() {
   };
 
   return (
+    <Container style={mystyle}>
+    <Navbar />
+    <slider />
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -146,5 +154,8 @@ export default function SignIn() {
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
+    <hr/>
+    <Footer />
+    </Container>
   );
 }

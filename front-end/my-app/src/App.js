@@ -29,6 +29,9 @@ import { useContext, useEffect } from 'react';
 import { AuthContext } from './contexts/auth-context';
 import request from './services/services';
 import Checkout from './pages/Checkout/Checkout';
+import ProfilePage from "./pages/ProfilePage ";
+import Cart from "./pages/Cart";
+
 
 const theme = createTheme();
 
@@ -46,16 +49,17 @@ function App() {
 
     <Router>
       <Routes>
-        <Route exact path="/" element={<Checkout />} />
+        <Route exact path="/" element={<Cart />} />
         <Route path="/products/:category" element={<ProductList />} />
         <Route path="/product/:id" element={<HomeProduct />} />
         {/* <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
         <Route path="/register">
           {user ? <Redirect to="/" /> : <Register />}
         </Route> */}
-        <Route path={ROUTES.LANDING} element={<Home />} />
+        <Route path={ROUTES.LANDING} element={<Cart />} />
         <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
         <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
+        <Route path={ROUTES.HOME} element={<Home />} />
         <Route path={ROUTES.ALLPRODUCTS} element={<Products />} />
         <Route path={ROUTES.PASSWORD_FORGET} element={<ForgetPassword />} />
         <Route path={ROUTES.DASHBOARD} element={<DbHome />} />
@@ -65,7 +69,10 @@ function App() {
         <Route path={ROUTES.DASHBOARDPRODUCTLIST} element={<DBProductList />} />
         <Route path={ROUTES.DASHBOARDPRODUCT} element={<DbProduct />} />
         <Route path={ROUTES.DASHBOARDNEWPRODUCT} element={<NewProduct />} />
+        <Route path={ROUTES.CART} element={<Cart />} />
+       
         <Route path={ROUTES.CHECKOUT} element={<Checkout />} />
+        <Route path={ROUTES.PROFILEPAGE} element={<ProfilePage />} />
       </Routes>
     </Router>
   );
