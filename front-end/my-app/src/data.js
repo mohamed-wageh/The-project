@@ -4,21 +4,22 @@ export const sliderItems = [
     img: "https://dfcdn.defacto.com.tr/7/Y7687AZ_22AU_NM39_01_02.jpg",
     
   
-    desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+    desc: "BUY WHAT YOU BELIEVE IN",
+    title: "VARIETY COLLECTION",
     bg: "f8edeb",
   },
   {
     id: 2,
     img:"https://dfcdn.defacto.com.tr/7/W1240AZ_22AU_OG142_03_03.jpg",
     title: "AUTUMN COLLECTION",
-    desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+    desc: "IF YOU CAN'T STOP THINKING ABOUT IT...... BUY IT ",
     bg: "fcf1ed",
   },
   {
     id: 3,
     img: "https://dfcdn.defacto.com.tr/7/Y5502AZ_22WN_GN1046_03_02.jpg",
     title: "LOUNGEWEAR LOVE",
-    desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+    desc: "THE WEATHER IS PERFECT FOR ONLINE SHOPPING!",
     bg: "fbf0f4",
   },
 ];
