@@ -47,7 +47,7 @@ function App() {
 
     <Router>
       <Routes>
-        <Route exact path="/" element={<ProfilePage />} />
+        <Route exact path="/" element={<Home />} />
         <Route path="/products/:category" element={<ProductList />} />
         <Route path="/product/:id" element={<HomeProduct />} />
         {/* <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>

@@ -3,7 +3,7 @@ const User = require("../models/User");
 const bcrypt = require('bcryptjs');
 const { check, validationResult } = require('express-validator');
 const jwt = require("jsonwebtoken");
-const cloudinary = require('../utils/cloudinary');
+const cloudinary = require('cloudinary');
 //register
 router.post(
     "/register",
@@ -20,12 +20,7 @@ router.post(
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-        const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
-            folder: 'users',
-            width: 150,
-            crop: "scale"
-        })
-        const { email, password, phone, firstName, lastName, avatar ,isAdmin } = req.body;
+        const {email, password, phone, firstName, lastName, avatar ,isAdmin } = req.body;
         try {
             //check if user exists
             let user = await User.findOne({ email });
@@ -37,10 +32,6 @@ router.post(
                 password,
                 phone,
                 firstName,
-                 avatar: {
-                     public_id: result.public_id,
-                     url: result.secure_url
-                },
                 lastName,
                 avatar,
                 isAdmin
