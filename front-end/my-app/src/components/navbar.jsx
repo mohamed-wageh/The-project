@@ -6,10 +6,12 @@ import Styled from "styled-components";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/auth-context";
 import * as ROUTES from '../Constants/Route';
+import { mobile } from "../responsive";
 
 const Contaniers = Styled.div` 
 height: 50px;
 background-color: white;
+${mobile({ height: "50px" })}
 `;
 
 const Wrapper = Styled.div`
@@ -26,6 +28,7 @@ align-items: center;
 const Language = Styled.span`
   font-size: 14px;
   cursor: pointer;
+  ${mobile({ display: "none" })}
 `;
 
 const SearchContainer = Styled.div`
@@ -38,6 +41,7 @@ const SearchContainer = Styled.div`
 
 const Input = Styled.input`
 border:none;
+${mobile({ width: "50px" })}
 `;
 
 const Center = Styled.div`
@@ -49,6 +53,7 @@ const Logo = Styled.h1`
 font-weight: bold;
 color: #006466;
 cursor: pointer;
+${mobile({ fontSize: "24px" })}
 `;
 
 const Right = Styled.div`
@@ -56,13 +61,16 @@ flex: 1;
 display: flex;
 align-items: center;
 justify-content: flex-end;
+${mobile({ flex: 2, justifyContent: "center" })}
 `;
 
 const MenuItem = Styled.div`
 font-size: 14px;
 cursor: pointer;
 margin-left: 25px;
+${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
+
 // const myStyle ={
 // fontSize: "12px",
 // width: "20px",
