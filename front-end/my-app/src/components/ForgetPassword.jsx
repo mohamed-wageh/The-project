@@ -9,10 +9,21 @@ import * as ROUTES from '../Constants/Route';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
-
+import slider from "../components/slider";
+import Footer from "../components/Footer/Footer";
+import Navbar from "./Navbar";
 
 const theme = createTheme();
-
+const mystyle = {
+  padding:15
+};
+const mystyle1 = {
+  margin:25
+};
+const mystyle2 = {
+  padding:30
+  // margin:25
+};
 export default function ForgetPassword() {
     const handleSubmit = (event) => {
       event.preventDefault();
@@ -23,10 +34,14 @@ export default function ForgetPassword() {
       });
     };
     return (
-        <ThemeProvider theme={theme}>
-          <Container component="main" maxWidth="xs">
+      <Container style={mystyle}>
+      <Navbar />
+      <slider />
+        <ThemeProvider  theme={theme}>
+          <Container style={mystyle2} component="main" maxWidth="xs"  >
             <CssBaseline />
             <Box
+              style={mystyle1}
               sx={{
                 marginTop: 20,
                 display: 'flex',
@@ -80,5 +95,8 @@ export default function ForgetPassword() {
               
       </Container>
     </ThemeProvider>
+    <hr />
+    <Footer />
+    </Container>
   );
 }

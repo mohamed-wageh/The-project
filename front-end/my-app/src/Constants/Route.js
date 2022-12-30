@@ -3,6 +3,7 @@ export const SIGN_UP = '/signup';
 export const SIGN_IN = '/signin';
 export const HOME = '/home';
 export const ACCOUNT = '/account';
+export const CART = '/cart';
 export const ADMIN = '/admin';
 export const ADMIN_DETAILS = '/admin/:id';
 export const PASSWORD_FORGET = '/pw-forget';
@@ -21,7 +22,7 @@ export const CONTAINER = '/categories';
 export const FEATUREDPRODUCTS = '/featuredproducts';
 export const CARD = '/card';
 export const ALLPRODUCTS = '/allproducts';
-// export const PRODUCTS = '/products';
-// export const PRODUCT1 = '/Product1';
+
+
 export const CHECKOUT = '/checkout';
 export const PROFILEPAGE = '/profilepage';

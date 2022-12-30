@@ -5,6 +5,8 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import PinterestIcon from '@mui/icons-material/Pinterest';
 import RoomIcon from '@mui/icons-material/Room';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import * as ROUTES from '../../Constants/Route';
+import Link from '@mui/material/Link';
 
 import styled from "styled-components";
 import { mobile } from "../../responsive";
@@ -88,11 +90,12 @@ const Footer = () => {
   return (
     <Container>
       <Left>
-        <Logo>EL WEKALA</Logo>
+        <Logo>FASHION GRAB</Logo>
         <Desc>
-          There are many variations of passages of Lorem Ipsum available, but
+          {/* There are many variations of passages of Lorem Ipsum available, but
           the majority have suffered alteration in some form, by injected
-          humour, or randomised words which don’t look even slightly believable.
+          humour, or randomised words which don’t look even slightly believable. */}
+          Good Outfits to Wear to a High End Clothes Store
         </Desc>
         <SocialContainer>
           <SocialIcon color="3B5999">
@@ -112,13 +115,13 @@ const Footer = () => {
       <Center>
         <Title>Useful Links</Title>
         <List>
-          <ListItem>Home</ListItem>
-          <ListItem>Cart</ListItem>
-          <ListItem>Man Fashion</ListItem>
-          <ListItem>Woman Fashion</ListItem>
-          <ListItem>Kids Fashion</ListItem>
-          <ListItem>My Account</ListItem>
-          <ListItem>Order Tracking</ListItem>
+          <ListItem><Link href={ROUTES.HOME} variant="body2"> Home  </Link></ListItem>
+          <ListItem><Link href={ROUTES.CART} variant="body2"> Cart </Link></ListItem>
+          <ListItem><Link href={ROUTES.SIGN_UP} variant="body2"> Man Fashion </Link></ListItem>
+          <ListItem><Link href={ROUTES.SIGN_UP} variant="body2"> Woman Fashion </Link></ListItem>
+          <ListItem><Link href={ROUTES.SIGN_UP} variant="body2"> Kids Fashion </Link></ListItem>
+          <ListItem><Link href={ROUTES.PROFILEPAGE} variant="body2"> My Account </Link></ListItem>
+          {/* <ListItem><Link href={ROUTES.SIGN_UP} variant="body2"> Order Tracking </Link></ListItem> */}
           {/* <ListItem>Wishlist</ListItem>
           <ListItem>Wishlist</ListItem> */}
           <ListItem>Terms</ListItem>
@@ -127,13 +130,13 @@ const Footer = () => {
       <Right>
         <Title>Contact</Title>
         <ContactItem>
-          <RoomIcon style={{ marginRight: "10px" }} /> 622 Dixie Path , South Tobinchester 98336
+          <RoomIcon style={{ marginRight: "10px" }} /> Cairo University , Egypt
         </ContactItem>
         <ContactItem>
           <PhoneIcon style={{ marginRight: "10px" }} /> 0123456789
         </ContactItem>
         <ContactItem>
-          <MailOutlineIcon style={{ marginRight: "10px" }} /> contact@EL WEKALA
+          <MailOutlineIcon style={{ marginRight: "10px" }} /> contact@FASHION GRAB
         </ContactItem>
         <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
       </Right>
